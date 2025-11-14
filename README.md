@@ -56,7 +56,7 @@ I reorganized the workflows into five top-level categories to make navigation ea
 
 **🌳 Automation for a More Sustainable World**
 
-- [🌲 AI Agent for Sustainability Report Audit with Gmail and GPT-40](./Automation_for_a_More_Sustainable_World/🌲_AI_Agent_for_Sustainability_Report_Audit_with_Gmail_and_GPT-40/)
+- [🌲 AI Agent for Sustainability Report Audit with Gmail and GPT-40](./Automation_for_a_More_Sustainable_World/AI_Agent_for_Sustainability_Report_Audit_with_Gmail_and_GPT-40/)
 - [🌳 EU Green Legislation Tracker with GPT-4o, Google Sheets and Tasks](./Automation_for_a_More_Sustainable_World/EU_Green_Legislation_Tracker_with_GPT-4o,_Google_Sheets_and_Tasks/)
 - [🗞️ AI-Powered Sustainability Newsletter for Marketing with Gmail, GPT-4o](./Automation_for_a_More_Sustainable_World/AI-Powered_Sustainability_Newsletter_for_Marketing_with_Gmail,_GPT-4o/)
 
