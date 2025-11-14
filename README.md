@@ -32,11 +32,45 @@ Each workflow has its own folder:
 └── README.md # Full presentation + setup instructions
 ```
 
+## Folders
+
+Below are links to each top-level folder in this repository:
+
+- [Inventory ABC & Pareto Analysis with Google Sheets for Supply Chain Optimization](./Inventory%20ABC%20%26%20Pareto%20Analysis%20with%20Google%20Sheets%20for%20Supply%20Chain%20Optimization/)
+- [♻️ AI Multi-Stop Planner for Circular Logistics with GPT-4o & Open Route API](./♻️%20AI%20Multi-Stop%20Planner%20for%20Circular%20Logistics%20with%20GPT-4o%20%26%20Open%20Route%20API/)
+- [✈️ CO2 Emissions of Business Travels with Carbon Interface API and GPT-4o](./✈️%20CO2%20Emissions%20of%20Business%20Travels%20with%20Carbon%20Interface%20API%20and%20GPT-4o/)
+- [✍️ AI Agent to Create Linkedin Posts for Blog Promotion with GPT-4o](./✍️%20AI%20Agent%20to%20Create%20Linkedin%20Posts%20for%20Blog%20Promotion%20with%20GPT-4o/)
+- [✍️ Blog Image SEO & Size Auditor with Ghost and Google Sheets](./✍️%20Blog%20Image%20SEO%20%26%20Size%20Auditor%20with%20Ghost%20and%20Google%20Sheets/)
+- [🉑 Generate Anki Flash Cards for Language Learning with Google Translate and GPT](./🉑%20Generate%20Anki%20Flash%20Cards%20for%20Language%20Learning%20with%20Google%20Translate%20and%20GPT/)
+- [🌲 AI Agent for Sustainability Report Audit with Gmail and GPT-40](./🌲%20AI%20Agent%20for%20Sustainability%20Report%20Audit%20with%20Gmail%20and%20GPT-40/)
+- [🌳 EU Green Legislation Tracker with GPT-4o, Google Sheets and Tasks](./🌳%20EU%20Green%20Legislation%20Tracker%20with%20GPT-4o,%20Google%20Sheets%20and%20Tasks/)
+- [🍅 Custom Pomodoro Tracker using Telegram and Google Sheet](./🍅%20Custom%20Pomodoro%20Tracker%20using%20Telegram%20and%20Google%20Sheet/)
+- [🏤 Scrapping of European Union Events with Google Sheets](./🏤%20Scrapping%20of%20European%20Union%20Events%20with%20Google%20Sheets/)
+- [💰 Automate Currency Rates Update in Invoices with Google Sheet, ExchangeRate API](./💰%20Automate%20Currency%20Rates%20Update%20in%20Invoices%20with%20Google%20Sheet,%20ExchangeRate%20API/)
+- [📈 Hourly Monitoring of Crypto Rates with Alpha Vantage API and Google Sheets](./📈%20Hourly%20Monitoring%20of%20Crypto%20Rates%20with%20Alpha%20Vantage%20API%20and%20Google%20Sheets/)
+- [📦 Electronic Data Interchange (EDI) Message Parsing with Gmail and Google Sheet](./📦%20Electronic%20Data%20Interchange%20(EDI)%20Message%20Parsing%20with%20Gmail%20and%20Google%20Sheet/)
+- [📰 AI-Powered EU News Digest by Topic with RSS, GPT & Gmail](./📰%20AI-Powered%20EU%20News%20Digest%20by%20Topic%20with%20RSS,%20GPT%20%26%20Gmail/)
+- [📸 Automate Photo Background Removal with Photoroom API and Google Drive](./📸%20Automate%20Photo%20Background%20Removal%20with%20Photoroom%20API%20and%20Google%20Drive/)
+- [🗞️ AI-Powered Sustainability Newsletter for Marketing with Gmail, GPT-4o](./🗞️%20AI-Powered%20Sustainability%20Newsletter%20for%20Marketing%20with%20Gmail,%20GPT-4o/)
+- [🗼 AI Powered Supply Chain Control Tower with BigQuery and GPT-4o](./🗼%20AI%20Powered%20Supply%20Chain%20Control%20Tower%20with%20BigQuery%20and%20GPT-4o/)
+- [🚚 Automate Delivery Confirmation with Telegram Bot, Google Drive and Gmail](./🚚%20Automate%20Delivery%20Confirmation%20with%20Telegram%20Bot,%20Google%20Drive%20and%20Gmail/)
+- [🚚 CO2 Emissions of Freight Shipments with Carbon Interface API and GPT-4o](./🚚%20CO2%20Emissions%20of%20Freight%20Shipments%20with%20Carbon%20Interface%20API%20and%20GPT-4o/)
+- [🚚 Estimate Driving Time and Distance for Logistics with Open Route API](./🚚%20Estimate%20Driving%20Time%20and%20Distance%20for%20Logistics%20with%20Open%20Route%20API/)
+- [🚛🗺️ Geocoding for Logistics with Open Route API and Google Sheets](./🚛🗺️%20Geocoding%20for%20Logistics%20with%20Open%20Route%20API%20and%20Google%20Sheets/)
+- [🚦 AI Agent for Debugging Workflow Executions with HTTP, Webhook](./🚦%20AI%20Agent%20for%20Debugging%20Workflow%20Executions%20with%20HTTP,%20Webhook/)
+- [🛻 AI Agent for Logistics Order Processing with GPT-4o, Gmail and Google Sheet](./🛻%20AI%20Agent%20for%20Logistics%20Order%20Processing%20with%20GPT-4o,%20Gmail%20and%20Google%20Sheet/)
+- [🤖🚚 AI agent for Transportation Orders Management with GPT-4o and Open Route API](./🤖🚚%20AI%20agent%20for%20Transportation%20Orders%20Management%20with%20GPT-4o%20and%20Open%20Route%20API/)
+- [🧑‍🎓 AI Powered Language Teacher with Telegram, Google Sheet and GPT-4o](./🧑‍🎓%20AI%20Powered%20Language%20Teacher%20with%20Telegram,%20Google%20Sheet%20and%20GPT-4o/)
+- [🧑‍🦯Improve your Website Accessibility with GPT-4o and Google Sheet](./🧑‍🦯Improve%20your%20Website%20Accessibility%20with%20GPT-4o%20and%20Google%20Sheet/)
+
 ## 📺 n8n Tutorials Playlist
 
 You can find video walkthroughs for many of these workflows in my dedicated playlist:
 
 [![n8n Playlist](https://www.samirsaci.com/content/images/size/w1600/2025/11/image-9.png)](https://www.youtube.com/playlist?list=PLvINVddGUMQWK6JVR35KPXu-GmOfcd0RP)
+
+They include:
+*
 
 ## 👋 About Me
 
