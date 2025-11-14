@@ -9,11 +9,11 @@ A curated collection of **production-ready n8n workflows** used across real supp
 
 This repository centralizes all workflows I’ve created for:
 
-- 🌍 **Sustainability & Compliance**
-- 🚚 **Transportation & Supply Chain Automation**
-- 🤖 **AI Agents & MCP Server Integrations**
-- 📧 **Email / Sheets / API / Webhook Automation**
-- 🧰 **General Productivity & Data Processing**
+- ⏰ [**Productivity for Business Professionals and Students**](./⏰%20Productivity%20for%20Business%20Professionals%20and%20Students)
+- ✍️ [**Content Creation, Promotion and Marketing**](./✍️%20Content%20Creation,%20Promotion%20and%20Marketing)
+- 🌳 [**Automation for a More Sustainable World**](./🌳%20Automation%20for%20a%20More%20Sustainable%20World)
+- 🚛 [**Logistics & Supply Chain Automation**](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation)
+- 🧑‍💻 [**Programming & DevOps**](./🧑‍💻%20Programming%20%26%20DevOps)
 
 Each workflow is:
 
@@ -65,7 +65,7 @@ I reorganized the workflows into five top-level categories to make navigation ea
 - [Inventory ABC & Pareto Analysis with Google Sheets for Supply Chain Optimization](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/Inventory%20ABC%20%26%20Pareto%20Analysis%20with%20Google%20Sheets%20for%20Supply%20Chain%20Optimization/)
 - [♻️ AI Multi-Stop Planner for Circular Logistics with GPT-4o & Open Route API](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/♻️%20AI%20Multi-Stop%20Planner%20for%20Circular%20Logistics%20with%20GPT-4o%20%26%20Open%20Route%20API/)
 - [✈️ CO2 Emissions of Business Travels with Carbon Interface API and GPT-4o](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/✈️%20CO2%20Emissions%20of%20Business%20Travels%20with%20Carbon%20Interface%20API%20and%20GPT-4o/)
-- [📦 Electronic Data Interchange (EDI) Message Parsing with Gmail and Google Sheet](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/📦%20Electronic%20Data%20Interchange%20(EDI)%20Message%20Parsing%20with%20Gmail%20and%20Google%20Sheet/)
+- [📦 Electronic Data Interchange (EDI) Message Parsing with Gmail and Google Sheet](<./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/📦%20Electronic%20Data%20Interchange%20(EDI)%20Message%20Parsing%20with%20Gmail%20and%20Google%20Sheet/>)
 - [🗼 AI Powered Supply Chain Control Tower with BigQuery and GPT-4o](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🗼%20AI%20Powered%20Supply%20Chain%20Control%20Tower%20with%20BigQuery%20and%20GPT-4o/)
 - [🚚 Automate Delivery Confirmation with Telegram Bot, Google Drive and Gmail](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🚚%20Automate%20Delivery%20Confirmation%20with%20Telegram%20Bot,%20Google%20Drive%20and%20Gmail/)
 - [🚚 CO2 Emissions of Freight Shipments with Carbon Interface API and GPT-4o](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🚚%20CO2%20Emissions%20of%20Freight%20Shipments%20with%20Carbon%20Interface%20API%20and%20GPT-4o/)
@@ -86,9 +86,6 @@ You can find video walkthroughs for many of these workflows in my dedicated play
 
 [![n8n Playlist](https://www.samirsaci.com/content/images/size/w1600/2025/11/image-9.png)](https://www.youtube.com/playlist?list=PLvINVddGUMQWK6JVR35KPXu-GmOfcd0RP)
 
-They include:
-
--
 
 ## 👋 About Me
 
