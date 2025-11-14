@@ -2,18 +2,18 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![n8n](https://img.shields.io/badge/n8n-Workflows-orange?logo=n8n)
-![Automation](https://img.shields.io/badge/AI%20Automation-Enabled-blue?logo=OpenAI)
+![Automation](https://img.shields.io/badge/AI_Automation-Enabled-blue?logo=OpenAI)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
 A curated collection of **production-ready n8n workflows** used across real supply-chain, sustainability, and business automation projects.
 
 This repository centralizes all workflows I’ve created for:
 
-- ⏰ [**Productivity for Business Professionals and Students**](./⏰%20Productivity%20for%20Business%20Professionals%20and%20Students)
-- ✍️ [**Content Creation, Promotion and Marketing**](./✍️%20Content%20Creation,%20Promotion%20and%20Marketing)
-- 🌳 [**Automation for a More Sustainable World**](./🌳%20Automation%20for%20a%20More%20Sustainable%20World)
-- 🚛 [**Logistics & Supply Chain Automation**](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation)
-- 🧑‍💻 [**Programming & DevOps**](./🧑‍💻%20Programming%20%26%20DevOps)
+- ⏰ [**Productivity for Business Professionals and Students**](./⏰_Productivity_for_Business_Professionals_and_Students)
+- ✍️ [**Content Creation, Promotion and Marketing**](./✍️_Content_Creation,_Promotion_and_Marketing)
+- 🌳 [**Automation for a More Sustainable World**](./🌳_Automation_for_a_More_Sustainable_World)
+- 🚛 [**Logistics & Supply Chain Automation**](./🚛_Logistics_%26_Supply_Chain_Automation)
+- 🧑‍💻 [**Programming & DevOps**](./🧑‍💻_Programming_%26_DevOps)
 
 Each workflow is:
 
@@ -39,44 +39,44 @@ I reorganized the workflows into five top-level categories to make navigation ea
 
 **⏰ Productivity for Business Professionals and Students**
 
-- [🉑 Generate Anki Flash Cards for Language Learning with Google Translate and GPT](./⏰%20Productivity%20for%20Business%20Professionals%20and%20Students/🉑%20Generate%20Anki%20Flash%20Cards%20for%20Language%20Learning%20with%20Google%20Translate%20and%20GPT/)
-- [🍅 Custom Pomodoro Tracker using Telegram and Google Sheet](./⏰%20Productivity%20for%20Business%20Professionals%20and%20Students/🍅%20Custom%20Pomodoro%20Tracker%20using%20Telegram%20and%20Google%20Sheet/)
-- [🏤 Scrapping of European Union Events with Google Sheets](./⏰%20Productivity%20for%20Business%20Professionals%20and%20Students/🏤%20Scrapping%20of%20European%20Union%20Events%20with%20Google%20Sheets/)
-- [💰 Automate Currency Rates Update in Invoices with Google Sheet, ExchangeRate API](./⏰%20Productivity%20for%20Business%20Professionals%20and%20Students/💰%20Automate%20Currency%20Rates%20Update%20in%20Invoices%20with%20Google%20Sheet,%20ExchangeRate%20API/)
-- [📈 Hourly Monitoring of Crypto Rates with Alpha Vantage API and Google Sheets](./⏰%20Productivity%20for%20Business%20Professionals%20and%20Students/📈%20Hourly%20Monitoring%20of%20Crypto%20Rates%20with%20Alpha%20Vantage%20API%20and%20Google%20Sheets/)
-- [🧑‍🎓 AI Powered Language Teacher with Telegram, Google Sheet and GPT-4o](./⏰%20Productivity%20for%20Business%20Professionals%20and%20Students/🧑‍🎓%20AI%20Powered%20Language%20Teacher%20with%20Telegram,%20Google%20Sheet%20and%20GPT-4o/)
+- [🉑 Generate Anki Flash Cards for Language Learning with Google Translate and GPT](./⏰_Productivity_for_Business_Professionals_and_Students/🉑_Generate_Anki_Flash_Cards_for_Language_Learning_with_Google_Translate_and_GPT/)
+- [🍅 Custom Pomodoro Tracker using Telegram and Google Sheet](./⏰_Productivity_for_Business_Professionals_and_Students/🍅_Custom_Pomodoro_Tracker_using_Telegram_and_Google_Sheet/)
+- [🏤 Scrapping of European Union Events with Google Sheets](./⏰_Productivity_for_Business_Professionals_and_Students/🏤_Scrapping_of_European_Union_Events_with_Google_Sheets/)
+- [💰 Automate Currency Rates Update in Invoices with Google Sheet, ExchangeRate API](./⏰_Productivity_for_Business_Professionals_and_Students/💰_Automate_Currency_Rates_Update_in_Invoices_with_Google_Sheet,_ExchangeRate_API/)
+- [📈 Hourly Monitoring of Crypto Rates with Alpha Vantage API and Google Sheets](./⏰_Productivity_for_Business_Professionals_and_Students/📈_Hourly_Monitoring_of_Crypto_Rates_with_Alpha_Vantage_API_and_Google_Sheets/)
+- [🧑‍🎓 AI Powered Language Teacher with Telegram, Google Sheet and GPT-4o](./⏰_Productivity_for_Business_Professionals_and_Students/🧑‍🎓_AI_Powered_Language_Teacher_with_Telegram,_Google_Sheet_and_GPT-4o/)
 
 **✍️ Content Creation, Promotion and Marketing**
 
-- [✍️ AI Agent to Create Linkedin Posts for Blog Promotion with GPT-4o](./✍️%20Content%20Creation,%20Promotion%20and%20Marketing/✍️%20AI%20Agent%20to%20Create%20Linkedin%20Posts%20for%20Blog%20Promotion%20with%20GPT-4o/)
-- [✍️ Blog Image SEO & Size Auditor with Ghost and Google Sheets](./✍️%20Content%20Creation,%20Promotion%20and%20Marketing/✍️%20Blog%20Image%20SEO%20%26%20Size%20Auditor%20with%20Ghost%20and%20Google%20Sheets/)
-- [📰 AI-Powered EU News Digest by Topic with RSS, GPT & Gmail](./✍️%20Content%20Creation,%20Promotion%20and%20Marketing/📰%20AI-Powered%20EU%20News%20Digest%20by%20Topic%20with%20RSS,%20GPT%20%26%20Gmail/)
-- [📸 Automate Photo Background Removal with Photoroom API and Google Drive](./✍️%20Content%20Creation,%20Promotion%20and%20Marketing/📸%20Automate%20Photo%20Background%20Removal%20with%20Photoroom%20API%20and%20Google%20Drive/)
-- [🧑‍🦯Improve your Website Accessibility with GPT-4o and Google Sheet](./✍️%20Content%20Creation,%20Promotion%20and%20Marketing/🧑‍🦯Improve%20your%20Website%20Accessibility%20with%20GPT-4o%20and%20Google%20Sheet/)
+- [✍️ AI Agent to Create Linkedin Posts for Blog Promotion with GPT-4o](./✍️_Content_Creation,_Promotion_and_Marketing/✍️_AI_Agent_to_Create_Linkedin_Posts_for_Blog_Promotion_with_GPT-4o/)
+- [✍️ Blog Image SEO & Size Auditor with Ghost and Google Sheets](./✍️_Content_Creation,_Promotion_and_Marketing/✍️_Blog_Image_SEO_%26_Size_Auditor_with_Ghost_and_Google_Sheets/)
+- [📰 AI-Powered EU News Digest by Topic with RSS, GPT & Gmail](./✍️_Content_Creation,_Promotion_and_Marketing/📰_AI-Powered_EU_News_Digest_by_Topic_with_RSS,_GPT_%26_Gmail/)
+- [📸 Automate Photo Background Removal with Photoroom API and Google Drive](./✍️_Content_Creation,_Promotion_and_Marketing/📸_Automate_Photo_Background_Removal_with_Photoroom_API_and_Google_Drive/)
+- [🧑‍🦯Improve your Website Accessibility with GPT-4o and Google Sheet](./✍️_Content_Creation,_Promotion_and_Marketing/🧑‍🦯Improve_your_Website_Accessibility_with_GPT-4o_and_Google_Sheet/)
 
 **🌳 Automation for a More Sustainable World**
 
-- [🌲 AI Agent for Sustainability Report Audit with Gmail and GPT-40](./🌳%20Automation%20for%20a%20More%20Sustainable%20World/🌲%20AI%20Agent%20for%20Sustainability%20Report%20Audit%20with%20Gmail%20and%20GPT-40/)
-- [🌳 EU Green Legislation Tracker with GPT-4o, Google Sheets and Tasks](./🌳%20Automation%20for%20a%20More%20Sustainable%20World/🌳%20EU%20Green%20Legislation%20Tracker%20with%20GPT-4o,%20Google%20Sheets%20and%20Tasks/)
-- [🗞️ AI-Powered Sustainability Newsletter for Marketing with Gmail, GPT-4o](./🌳%20Automation%20for%20a%20More%20Sustainable%20World/🗞️%20AI-Powered%20Sustainability%20Newsletter%20for%20Marketing%20with%20Gmail,%20GPT-4o/)
+- [🌲 AI Agent for Sustainability Report Audit with Gmail and GPT-40](./🌳_Automation_for_a_More_Sustainable_World/🌲_AI_Agent_for_Sustainability_Report_Audit_with_Gmail_and_GPT-40/)
+- [🌳 EU Green Legislation Tracker with GPT-4o, Google Sheets and Tasks](./🌳_Automation_for_a_More_Sustainable_World/🌳_EU_Green_Legislation_Tracker_with_GPT-4o,_Google_Sheets_and_Tasks/)
+- [🗞️ AI-Powered Sustainability Newsletter for Marketing with Gmail, GPT-4o](./🌳_Automation_for_a_More_Sustainable_World/🗞️_AI-Powered_Sustainability_Newsletter_for_Marketing_with_Gmail,_GPT-4o/)
 
 **🚛 Logistics & Supply Chain Automation**
 
-- [Inventory ABC & Pareto Analysis with Google Sheets for Supply Chain Optimization](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/Inventory%20ABC%20%26%20Pareto%20Analysis%20with%20Google%20Sheets%20for%20Supply%20Chain%20Optimization/)
-- [♻️ AI Multi-Stop Planner for Circular Logistics with GPT-4o & Open Route API](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/♻️%20AI%20Multi-Stop%20Planner%20for%20Circular%20Logistics%20with%20GPT-4o%20%26%20Open%20Route%20API/)
-- [✈️ CO2 Emissions of Business Travels with Carbon Interface API and GPT-4o](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/✈️%20CO2%20Emissions%20of%20Business%20Travels%20with%20Carbon%20Interface%20API%20and%20GPT-4o/)
-- [📦 Electronic Data Interchange (EDI) Message Parsing with Gmail and Google Sheet](<./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/📦%20Electronic%20Data%20Interchange%20(EDI)%20Message%20Parsing%20with%20Gmail%20and%20Google%20Sheet/>)
-- [🗼 AI Powered Supply Chain Control Tower with BigQuery and GPT-4o](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🗼%20AI%20Powered%20Supply%20Chain%20Control%20Tower%20with%20BigQuery%20and%20GPT-4o/)
-- [🚚 Automate Delivery Confirmation with Telegram Bot, Google Drive and Gmail](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🚚%20Automate%20Delivery%20Confirmation%20with%20Telegram%20Bot,%20Google%20Drive%20and%20Gmail/)
-- [🚚 CO2 Emissions of Freight Shipments with Carbon Interface API and GPT-4o](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🚚%20CO2%20Emissions%20of%20Freight%20Shipments%20with%20Carbon%20Interface%20API%20and%20GPT-4o/)
-- [🚚 Estimate Driving Time and Distance for Logistics with Open Route API](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🚚%20Estimate%20Driving%20Time%20and%20Distance%20for%20Logistics%20with%20Open%20Route%20API/)
-- [🚛🗺️ Geocoding for Logistics with Open Route API and Google Sheets](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🚛🗺️%20Geocoding%20for%20Logistics%20with%20Open%20Route%20API%20and%20Google%20Sheets/)
-- [🛻 AI Agent for Logistics Order Processing with GPT-4o, Gmail and Google Sheet](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🛻%20AI%20Agent%20for%20Logistics%20Order%20Processing%20with%20GPT-4o,%20Gmail%20and%20Google%20Sheet/)
-- [🤖🚚 AI agent for Transportation Orders Management with GPT-4o and Open Route API](./🚛%20Logistics%20%26%20Supply%20Chain%20Automation/🤖🚚%20AI%20agent%20for%20Transportation%20Orders%20Management%20with%20GPT-4o%20and%20Open%20Route%20API/)
+- [Inventory ABC & Pareto Analysis with Google Sheets for Supply Chain Optimization](./🚛_Logistics_%26_Supply_Chain_Automation/Inventory_ABC_%26_Pareto_Analysis_with_Google_Sheets_for_Supply_Chain_Optimization/)
+- [♻️ AI Multi-Stop Planner for Circular Logistics with GPT-4o & Open Route API](./🚛_Logistics_%26_Supply_Chain_Automation/♻️_AI_Multi-Stop_Planner_for_Circular_Logistics_with_GPT-4o_%26_Open_Route_API/)
+- [✈️ CO2 Emissions of Business Travels with Carbon Interface API and GPT-4o](./🚛_Logistics_%26_Supply_Chain_Automation/✈️_CO2_Emissions_of_Business_Travels_with_Carbon_Interface_API_and_GPT-4o/)
+- [📦 Electronic Data Interchange (EDI) Message Parsing with Gmail and Google Sheet](<./🚛_Logistics_%26_Supply_Chain_Automation/📦_Electronic_Data_Interchange_(EDI)_Message_Parsing_with_Gmail_and_Google_Sheet/>)
+- [🗼 AI Powered Supply Chain Control Tower with BigQuery and GPT-4o](./🚛_Logistics_%26_Supply_Chain_Automation/🗼_AI_Powered_Supply_Chain_Control_Tower_with_BigQuery_and_GPT-4o/)
+- [🚚 Automate Delivery Confirmation with Telegram Bot, Google Drive and Gmail](./🚛_Logistics_%26_Supply_Chain_Automation/🚚_Automate_Delivery_Confirmation_with_Telegram_Bot,_Google_Drive_and_Gmail/)
+- [🚚 CO2 Emissions of Freight Shipments with Carbon Interface API and GPT-4o](./🚛_Logistics_%26_Supply_Chain_Automation/🚚_CO2_Emissions_of_Freight_Shipments_with_Carbon_Interface_API_and_GPT-4o/)
+- [🚚 Estimate Driving Time and Distance for Logistics with Open Route API](./🚛_Logistics_%26_Supply_Chain_Automation/🚚_Estimate_Driving_Time_and_Distance_for_Logistics_with_Open_Route_API/)
+- [🚛🗺️ Geocoding for Logistics with Open Route API and Google Sheets](./🚛_Logistics_%26_Supply_Chain_Automation/🚛🗺️_Geocoding_for_Logistics_with_Open_Route_API_and_Google_Sheets/)
+- [🛻 AI Agent for Logistics Order Processing with GPT-4o, Gmail and Google Sheet](./🚛_Logistics_%26_Supply_Chain_Automation/🛻_AI_Agent_for_Logistics_Order_Processing_with_GPT-4o,_Gmail_and_Google_Sheet/)
+- [🤖🚚 AI agent for Transportation Orders Management with GPT-4o and Open Route API](./🚛_Logistics_%26_Supply_Chain_Automation/🤖🚚_AI_agent_for_Transportation_Orders_Management_with_GPT-4o_and_Open_Route_API/)
 
 **🧑‍💻 Programming & DevOps**
 
-- [🚦 AI Agent for Debugging Workflow Executions with HTTP, Webhook](./🧑‍💻%20Programming%20%26%20DevOps/🚦%20AI%20Agent%20for%20Debugging%20Workflow%20Executions%20with%20HTTP,%20Webhook/)
+- [🚦 AI Agent for Debugging Workflow Executions with HTTP, Webhook](./🧑‍💻_Programming_%26_DevOps/🚦_AI_Agent_for_Debugging_Workflow_Executions_with_HTTP,_Webhook/)
 
 If you want these as web (GitHub URL) links or added to a separate markdown index file, tell me and I will add it.
 
