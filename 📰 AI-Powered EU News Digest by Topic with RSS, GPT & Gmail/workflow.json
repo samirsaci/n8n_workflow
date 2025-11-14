@@ -1,0 +1,440 @@
+{
+    "meta": {
+        "instanceId": ""
+    },
+    "nodes": [
+        {
+            "id": "f35387a3-bf8f-47ba-a29b-f9ec9e0dcecd",
+            "name": "AI Classifier",
+            "type": "@n8n/n8n-nodes-langchain.openAi",
+            "position": [
+                752,
+                272
+            ],
+            "parameters": {
+                "modelId": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "gpt-4o-mini",
+                    "cachedResultName": "GPT-4O-MINI"
+                },
+                "options": {
+                    "temperature": 0.3
+                },
+                "messages": {
+                    "values": [
+                        {
+                            "content": "=You are an AI classifier for EU news. Your task is to determine if a news item is related to a specific topic.\n\nTopic Name: SUSTAINABILITY\nTopic Description: News related to climate change, carbon neutrality, Green Deal initiatives, renewable energy, energy efficiency, circular economy, biodiversity protection, sustainable finance, ESG regulations, environmental standards, emission reduction targets, clean technology, sustainable transport, green bonds, nature restoration, water management, waste reduction, sustainable agriculture, forest protection, ocean conservation, green transition funding, climate adaptation, net-zero policies, sustainable development goals (SDGs), environmental compliance, and eco-innovation in the European Union.\n\nNews Item to Classify:\nTitle: {{ $json.title }}\nContent: {{ $json.content }}\nCategories: {{ $json.categories.join(', ') }}\n\nAnalyze this news item and respond with a JSON object:\n{\n  \"is_relevant\": true/false,\n  \"relevance_score\": 0-100,\n  \"key_topics_found\": [\"list\", \"of\", \"relevant\", \"aspects\"],\n  \"reasoning\": \"Brief explanation of why this is or isn't relevant\"\n}\n\nOnly respond with the JSON object, no additional text."
+                        }
+                    ]
+                }
+            },
+            "credentials": {
+                "openAiApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "typeVersion": 1.4
+        },
+        {
+            "id": "d0d172a5-ebb6-43fe-a77f-cdbd3d846e5c",
+            "name": "Loop Over Items1",
+            "type": "n8n-nodes-base.splitInBatches",
+            "position": [
+                512,
+                272
+            ],
+            "parameters": {
+                "options": {}
+            },
+            "typeVersion": 3
+        },
+        {
+            "id": "a3e6d386-e19d-47ef-9636-e99660551616",
+            "name": "Trigger: 09:00 am",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "position": [
+                16,
+                272
+            ],
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "triggerAtHour": 9
+                        }
+                    ]
+                }
+            },
+            "typeVersion": 1.2
+        },
+        {
+            "id": "aa2fbd6a-6eca-49a5-97c1-2daa91833c96",
+            "name": "RSS News EU",
+            "type": "n8n-nodes-base.rssFeedRead",
+            "position": [
+                256,
+                272
+            ],
+            "parameters": {
+                "url": "https://www.consilium.europa.eu/en/rss/pressreleases.ashx",
+                "options": {}
+            },
+            "typeVersion": 1.2
+        },
+        {
+            "id": "994fbfd6-a5a6-43b6-92e2-02348a98ea4d",
+            "name": "Insert row",
+            "type": "n8n-nodes-base.dataTable",
+            "position": [
+                1312,
+                272
+            ],
+            "parameters": {
+                "columns": {
+                    "value": {
+                        "guid": "={{ $('Loop Over Items1').item.json.guid }}",
+                        "link": "={{ $('Loop Over Items1').item.json.link }}",
+                        "title": "={{ $('Loop Over Items1').item.json.title }}",
+                        "content": "={{ $('Loop Over Items1').item.json.content }}",
+                        "categories": "={{ $('Loop Over Items1').item.json.categories.join(', ') }}",
+                        "createDate": "={{ $now.toFormat('yyyy-MM-dd') }}",
+                        "contentSnippet": "={{ $('Loop Over Items1').item.json.contentSnippet }}"
+                    },
+                    "schema": [
+                        {
+                            "id": "title",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "readOnly": false,
+                            "required": false,
+                            "displayName": "title",
+                            "defaultMatch": false
+                        },
+                        {
+                            "id": "link",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "readOnly": false,
+                            "required": false,
+                            "displayName": "link",
+                            "defaultMatch": false
+                        },
+                        {
+                            "id": "content",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "readOnly": false,
+                            "required": false,
+                            "displayName": "content",
+                            "defaultMatch": false
+                        },
+                        {
+                            "id": "contentSnippet",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "readOnly": false,
+                            "required": false,
+                            "displayName": "contentSnippet",
+                            "defaultMatch": false
+                        },
+                        {
+                            "id": "guid",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "readOnly": false,
+                            "required": false,
+                            "displayName": "guid",
+                            "defaultMatch": false
+                        },
+                        {
+                            "id": "categories",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "readOnly": false,
+                            "required": false,
+                            "displayName": "categories",
+                            "defaultMatch": false
+                        },
+                        {
+                            "id": "createDate",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "readOnly": false,
+                            "required": false,
+                            "displayName": "createDate",
+                            "defaultMatch": false
+                        }
+                    ],
+                    "mappingMode": "defineBelow",
+                    "matchingColumns": [],
+                    "attemptToConvertTypes": false,
+                    "convertFieldsToString": false
+                },
+                "options": {},
+                "dataTableId": {
+                    "__rl": true,
+                    "mode": "",
+                    "value": "",
+                    "cachedResultUrl": "",
+                    "cachedResultName": ""
+                }
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "7583a248-5a3b-4a75-9129-1ea57f3255c3",
+            "name": "If",
+            "type": "n8n-nodes-base.if",
+            "position": [
+                1104,
+                272
+            ],
+            "parameters": {
+                "options": {},
+                "conditions": {
+                    "options": {
+                        "version": 2,
+                        "leftValue": "",
+                        "caseSensitive": true,
+                        "typeValidation": "strict"
+                    },
+                    "combinator": "and",
+                    "conditions": [
+                        {
+                            "id": "0b998795-1a1f-4f17-8651-57b6fedc7be1",
+                            "operator": {
+                                "type": "boolean",
+                                "operation": "equals"
+                            },
+                            "leftValue": "={{ $json.message.content.parseJson().is_relevant }}",
+                            "rightValue": true
+                        }
+                    ]
+                }
+            },
+            "typeVersion": 2.2
+        },
+        {
+            "id": "1247ddc1-33b0-481d-9307-b7ef4849feb4",
+            "name": "Collect Today's News",
+            "type": "n8n-nodes-base.dataTable",
+            "position": [
+                304,
+                784
+            ],
+            "parameters": {
+                "filters": {
+                    "conditions": [
+                        {
+                            "keyName": "createDate",
+                            "keyValue": "={{ $now.toFormat('yyyy-MM-dd') }}"
+                        }
+                    ]
+                },
+                "matchType": "allConditions",
+                "operation": "get",
+                "dataTableId": {
+                    "__rl": true,
+                    "mode": "",
+                    "value": "",
+                    "cachedResultUrl": "",
+                    "cachedResultName": ""
+                }
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "",
+            "name": "Send the digest",
+            "type": "n8n-nodes-base.gmail",
+            "position": [
+                848,
+                784
+            ],
+            "webhookId": "",
+            "parameters": {
+                "message": "={{ $json.html }}",
+                "options": {
+                    "appendAttribution": false
+                },
+                "subject": "={{ $json.subject }}"
+            },
+            "notesInFlow": true,
+            "typeVersion": 2.1
+        },
+        {
+            "id": "235f4c77-1bfc-4549-bc72-9051c13f8716",
+            "name": "Generate the Digest in HTML",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                544,
+                784
+            ],
+            "parameters": {
+                "jsCode": "// Get all news items from the input\nconst newsItems = $input.all().map(item => item.json);\n\n// Generate the HTML email\nconst htmlEmail = `\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>EU Sustainability News Digest</title>\n    <style>\n        body {\n            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;\n            line-height: 1.6;\n            color: #333;\n            max-width: 700px;\n            margin: 0 auto;\n            padding: 0;\n            background-color: #f5f5f5;\n        }\n        .container {\n            background-color: #ffffff;\n            margin: 20px auto;\n            border-radius: 12px;\n            overflow: hidden;\n            box-shadow: 0 2px 10px rgba(0,0,0,0.1);\n        }\n        .header {\n            background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%);\n            color: white;\n            padding: 30px 40px;\n            text-align: center;\n        }\n        .header h1 {\n            margin: 0;\n            font-size: 28px;\n            font-weight: 600;\n            letter-spacing: -0.5px;\n        }\n        .header p {\n            margin: 10px 0 0 0;\n            font-size: 16px;\n            opacity: 0.95;\n        }\n        .date-badge {\n            display: inline-block;\n            background-color: rgba(255, 255, 255, 0.2);\n            padding: 5px 15px;\n            border-radius: 20px;\n            margin-top: 10px;\n            font-size: 14px;\n        }\n        .content {\n            padding: 30px 40px;\n        }\n        .news-item {\n            margin-bottom: 30px;\n            padding-bottom: 30px;\n            border-bottom: 1px solid #e0e0e0;\n        }\n        .news-item:last-of-type {\n            border-bottom: none;\n            margin-bottom: 0;\n            padding-bottom: 0;\n        }\n        .news-number {\n            display: inline-block;\n            background-color: #2e7d32;\n            color: white;\n            width: 28px;\n            height: 28px;\n            border-radius: 50%;\n            text-align: center;\n            line-height: 28px;\n            font-size: 14px;\n            font-weight: 600;\n            margin-right: 10px;\n            flex-shrink: 0;\n        }\n        .news-title {\n            font-size: 18px;\n            font-weight: 600;\n            color: #1a1a1a;\n            margin: 0 0 10px 0;\n            line-height: 1.4;\n            display: flex;\n            align-items: flex-start;\n        }\n        .news-title a {\n            color: #1a1a1a;\n            text-decoration: none;\n            flex-grow: 1;\n        }\n        .news-title a:hover {\n            color: #2e7d32;\n        }\n        .news-meta {\n            display: flex;\n            gap: 15px;\n            margin-bottom: 12px;\n            flex-wrap: wrap;\n        }\n        .category-tag {\n            background-color: #e8f5e9;\n            color: #2e7d32;\n            padding: 4px 10px;\n            border-radius: 12px;\n            font-size: 12px;\n            font-weight: 500;\n        }\n        .date-tag {\n            color: #666;\n            font-size: 12px;\n            padding: 4px 0;\n        }\n        .news-content {\n            color: #555;\n            font-size: 15px;\n            line-height: 1.6;\n            margin: 12px 0 0 38px;\n        }\n        .read-more {\n            display: inline-block;\n            margin: 10px 0 0 38px;\n            color: #2e7d32;\n            text-decoration: none;\n            font-size: 14px;\n            font-weight: 500;\n        }\n        .read-more:hover {\n            text-decoration: underline;\n        }\n        .footer {\n            background-color: #f8f9fa;\n            padding: 25px 40px;\n            text-align: center;\n            border-top: 1px solid #e0e0e0;\n        }\n        .footer-logo {\n            font-size: 20px;\n            font-weight: 600;\n            color: #2e7d32;\n            margin-bottom: 10px;\n        }\n        .footer-links {\n            margin-top: 15px;\n        }\n        .footer-links a {\n            color: #2e7d32;\n            text-decoration: none;\n            margin: 0 10px;\n            font-size: 14px;\n        }\n        .footer-links a:hover {\n            text-decoration: underline;\n        }\n        .footer-divider {\n            margin: 0 5px;\n            color: #999;\n        }\n        .footer-note {\n            margin-top: 15px;\n            font-size: 12px;\n            color: #666;\n        }\n        @media (max-width: 600px) {\n            .header {\n                padding: 25px 20px;\n            }\n            .header h1 {\n                font-size: 24px;\n            }\n            .content {\n                padding: 20px;\n            }\n            .footer {\n                padding: 20px;\n            }\n            .news-meta {\n                gap: 8px;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"header\">\n            <h1>🌱 EU Sustainability News Digest</h1>\n            <p>Your curated selection of EU environmental and climate updates</p>\n            <span class=\"date-badge\">${new Date().toLocaleDateString('en-GB', { \n                weekday: 'long', \n                year: 'numeric', \n                month: 'long', \n                day: 'numeric' \n            })}</span>\n        </div>\n        \n        <div class=\"content\">\n            ${newsItems.map((item, index) => `\n                <div class=\"news-item\">\n                    <h2 class=\"news-title\">\n                        <span class=\"news-number\">${index + 1}</span>\n                        <a href=\"${item.link}\" target=\"_blank\">${item.title}</a>\n                    </h2>\n                    <div class=\"news-meta\">\n                        ${item.categories.split(',').map(cat => \n                            `<span class=\"category-tag\">${cat.trim()}</span>`\n                        ).join('')}\n                        <span class=\"date-tag\">📅 ${new Date(item.createDate).toLocaleDateString('en-GB', { \n                            day: 'numeric',\n                            month: 'short',\n                            year: 'numeric'\n                        })}</span>\n                    </div>\n                    <p class=\"news-content\">${item.contentSnippet}</p>\n                    <a href=\"${item.link}\" target=\"_blank\" class=\"read-more\">Read full article →</a>\n                </div>\n            `).join('')}\n        </div>\n        \n        <div class=\"footer\">\n            <div class=\"footer-logo\">🤖 LogiGreen Bot</div>\n            <div style=\"color: #666; font-size: 14px; margin-bottom: 10px;\">\n                Automated EU Sustainability News Monitoring\n            </div>\n            <div class=\"footer-links\">\n                <a href=\"https://logi-green.com\" target=\"_blank\">🌐 Website</a>\n                <span class=\"footer-divider\">|</span>\n                <a href=\"https://linktr.ee/samirsaci\" target=\"_blank\">🔗 Contact & Links</a>\n            </div>\n            <div class=\"footer-note\">\n                Powered by LogiGreen Consulting - AI-driven sustainability insights for better business decisions\n            </div>\n        </div>\n    </div>\n</body>\n</html>\n`;\n\n// Return the HTML email and metadata\nreturn {\n  html: htmlEmail,\n  subject: `EU Sustainability Digest - ${new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}`,\n  newsCount: newsItems.length,\n  generatedAt: new Date().toISOString()\n};"
+            },
+            "typeVersion": 2
+        },
+        {
+            "id": "a11e0d02-2932-495d-8e59-0addb6dd1bd7",
+            "name": "Sticky Note2",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                0,
+                0
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 412,
+                "height": 492,
+                "content": "### 1. Fetch the latest EU news from RSS\nUsing the RSS feed of the Council of the European Union, the workflow runs every morning at 09:00 and pulls the most recent press releases.\nThe RSS node turns each news item (title, link, content and categories) into structured items that can be processed one by one in the next steps.\n\n**How to setup?**\n*Nothing to do*\n"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "490f9974-78f7-4f89-9eaa-ddae094600a3",
+            "name": "Sticky Note",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                448,
+                0
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 1068,
+                "height": 492,
+                "content": "### 2. Use AI to select relevant news and store them\nEach news item is looped through the AI Classifier, the model returns a JSON object with is_relevant, a relevance score and key topics. Only items marked as relevant are kept and inserted into an n8n Data Table.\n\n**How to setup?**\n- Add your Open AI Credentials and select the model\n- Setup your datatable and select it in the node\n"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "3ecdb292-dcca-45b2-9c34-4e0bafcd8596",
+            "name": "Sticky Note3",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                272,
+                512
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 1040,
+                "height": 436,
+                "content": "### 3. Build the daily digest and send it by email \nAt the end of the day’s run, the workflow retrieves all news stored for today from the Data Table.\nA Code node formats them into a clean HTML newsletter (headline, tags, short description and link for each article).\nFinally, the Gmail node sends the digest to your chosen inbox.\n\n#### How to setup?\nUpdate the recipient address in the Gmail node and adjust the HTML template or branding in the Code node if needed.\n- Select the right table\n- Add your Gmail credentials\n [Learn more about the Gmail Node](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.gmail)"
+            },
+            "typeVersion": 1
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "If": {
+            "main": [
+                [
+                    {
+                        "node": "Insert row",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Loop Over Items1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Insert row": {
+            "main": [
+                [
+                    {
+                        "node": "Loop Over Items1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "RSS News EU": {
+            "main": [
+                [
+                    {
+                        "node": "Loop Over Items1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "AI Classifier": {
+            "main": [
+                [
+                    {
+                        "node": "If",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Loop Over Items1": {
+            "main": [
+                [],
+                [
+                    {
+                        "node": "AI Classifier",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Trigger: 09:00 am": {
+            "main": [
+                [
+                    {
+                        "node": "RSS News EU",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Collect Today's News",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Collect Today's News": {
+            "main": [
+                [
+                    {
+                        "node": "Generate the Digest in HTML",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Generate the Digest in HTML": {
+            "main": [
+                [
+                    {
+                        "node": "Send the digest",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

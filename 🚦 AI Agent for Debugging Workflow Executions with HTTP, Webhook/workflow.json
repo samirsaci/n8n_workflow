@@ -1,0 +1,576 @@
+{
+    "meta": {
+        "instanceId": ""
+    },
+    "nodes": [
+        {
+            "id": "18768dea-e6ea-444b-9e98-020f24759612",
+            "name": "Route by Action",
+            "type": "n8n-nodes-base.switch",
+            "position": [
+                288,
+                416
+            ],
+            "parameters": {
+                "rules": {
+                    "values": [
+                        {
+                            "outputKey": "active_workflows",
+                            "conditions": {
+                                "options": {
+                                    "version": 1,
+                                    "leftValue": "",
+                                    "caseSensitive": true,
+                                    "typeValidation": "strict"
+                                },
+                                "combinator": "and",
+                                "conditions": [
+                                    {
+                                        "id": "74630646-16e0-4070-a3af-a0dd3c851248",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals"
+                                        },
+                                        "leftValue": "={{ $json.body.action }}",
+                                        "rightValue": "get_active_workflows"
+                                    }
+                                ]
+                            },
+                            "renameOutput": true
+                        },
+                        {
+                            "outputKey": "executions_worfklows",
+                            "conditions": {
+                                "options": {
+                                    "version": 1,
+                                    "leftValue": "",
+                                    "caseSensitive": true,
+                                    "typeValidation": "strict"
+                                },
+                                "combinator": "and",
+                                "conditions": [
+                                    {
+                                        "id": "b5d83172-406e-4b65-b6e2-9aa82e52656d",
+                                        "operator": {
+                                            "name": "filter.operator.equals",
+                                            "type": "string",
+                                            "operation": "equals"
+                                        },
+                                        "leftValue": "={{ $json.body.action }}",
+                                        "rightValue": "get_workflow_executions"
+                                    }
+                                ]
+                            },
+                            "renameOutput": true
+                        },
+                        {
+                            "outputKey": "execution_details",
+                            "conditions": {
+                                "options": {
+                                    "version": 1,
+                                    "leftValue": "",
+                                    "caseSensitive": true,
+                                    "typeValidation": "strict"
+                                },
+                                "combinator": "and",
+                                "conditions": [
+                                    {
+                                        "id": "d473b358-fada-49a2-9221-c35d1675f944",
+                                        "operator": {
+                                            "name": "filter.operator.equals",
+                                            "type": "string",
+                                            "operation": "equals"
+                                        },
+                                        "leftValue": "={{ $json.body.action }}",
+                                        "rightValue": "get_execution_details"
+                                    }
+                                ]
+                            },
+                            "renameOutput": true
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "typeVersion": 3
+        },
+        {
+            "id": "66e80f9f-f38b-4747-a6f5-5cfc9f5396f2",
+            "name": "Extract All Executions",
+            "type": "n8n-nodes-base.splitOut",
+            "position": [
+                736,
+                240
+            ],
+            "parameters": {
+                "options": {},
+                "fieldToSplitOut": "data"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "2721ed96-bc48-4d36-9182-8ffd9cb3eb32",
+            "name": "Get Last Executions",
+            "type": "n8n-nodes-base.httpRequest",
+            "position": [
+                512,
+                240
+            ],
+            "parameters": {
+                "url": "=https://<YOUR_N8N_INSTANCE>/api/v1/executions",
+                "options": {},
+                "sendQuery": true,
+                "authentication": "predefinedCredentialType",
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "includeData",
+                            "value": "={{false}}"
+                        },
+                        {
+                            "name": "limit",
+                            "value": "={{ $('Webhook').item.json.body.limit }}"
+                        }
+                    ]
+                },
+                "nodeCredentialType": "n8nApi"
+            },
+            "credentials": {
+                "n8nApi": {
+                    "id": "tRdkfwbUbfDfqlYo",
+                    "name": "n8n account"
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 4.2
+        },
+        {
+            "id": "a19235be-22a1-40ba-b011-af868392d4c1",
+            "name": "Get Active Workflows",
+            "type": "n8n-nodes-base.httpRequest",
+            "position": [
+                512,
+                432
+            ],
+            "parameters": {
+                "url": "=https://<YOUR_N8N_INSTANCE>/api/v1/workflows",
+                "options": {},
+                "sendQuery": true,
+                "authentication": "predefinedCredentialType",
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "active",
+                            "value": "={{true}}"
+                        },
+                        {
+                            "name": "limit",
+                            "value": "={{ $('Webhook').item.json.body.workflow_id }}"
+                        },
+                        {
+                            "name": "excludePinnedData",
+                            "value": "={{true}}"
+                        }
+                    ]
+                },
+                "nodeCredentialType": "n8nApi"
+            },
+            "credentials": {
+                "n8nApi": {
+                    "id": "tRdkfwbUbfDfqlYo",
+                    "name": "n8n account"
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 4.2
+        },
+        {
+            "id": "e495cbb1-456d-4680-94bb-a33de770d0b9",
+            "name": "Active Workflows",
+            "type": "n8n-nodes-base.set",
+            "position": [
+                960,
+                432
+            ],
+            "parameters": {
+                "options": {},
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "d15f58d4-551d-423d-bae7-19e7b8d9f58d",
+                            "name": "createdAt",
+                            "type": "string",
+                            "value": "={{ $json.createdAt }}"
+                        },
+                        {
+                            "id": "37bff539-0f27-4f40-8235-789910e8c5f8",
+                            "name": "updatedAt",
+                            "type": "string",
+                            "value": "={{ $json.updatedAt }}"
+                        },
+                        {
+                            "id": "29d013e7-127b-41ec-ab1d-4deef3c040f4",
+                            "name": "id",
+                            "type": "string",
+                            "value": "={{ $json.id }}"
+                        },
+                        {
+                            "id": "aee15b56-0237-45cf-8a29-f5d24eb7db15",
+                            "name": "name",
+                            "type": "string",
+                            "value": "={{ $json.name }}"
+                        },
+                        {
+                            "id": "78d99983-8baa-4b07-b357-bcc7a0ecfa4d",
+                            "name": "isArchived",
+                            "type": "string",
+                            "value": "={{ $json.isArchived }}"
+                        }
+                    ]
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 3.4
+        },
+        {
+            "id": "6f9fe67b-0557-4656-bbcd-9cd6dcd8be15",
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "position": [
+                64,
+                432
+            ],
+            "webhookId": "8d8ea5d4-986e-46f3-adee-11eda64f8f60",
+            "parameters": {
+                "path": "8d8ea5d4-986e-46f3-adee-11eda64f8f60",
+                "options": {
+                    "rawBody": false
+                },
+                "httpMethod": "POST",
+                "responseMode": "responseNode"
+            },
+            "typeVersion": 2.1
+        },
+        {
+            "id": "dc6154ac-1d58-4f25-b950-31cf386cdccd",
+            "name": "Respond to Webhook",
+            "type": "n8n-nodes-base.respondToWebhook",
+            "position": [
+                1184,
+                432
+            ],
+            "parameters": {
+                "options": {},
+                "respondWith": "allIncomingItems"
+            },
+            "typeVersion": 1.4
+        },
+        {
+            "id": "c0ebfa4a-82ac-4489-8b7e-ae1fda603c6a",
+            "name": "Get Executions Details (Status = Error)",
+            "type": "n8n-nodes-base.httpRequest",
+            "position": [
+                512,
+                624
+            ],
+            "parameters": {
+                "url": "=https://<YOUR_N8N_INSTANCE>/api/v1/executions",
+                "options": {},
+                "sendQuery": true,
+                "authentication": "predefinedCredentialType",
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "includeData",
+                            "value": "={{true}}"
+                        },
+                        {
+                            "name": "limit",
+                            "value": "={{ $('Webhook').item.json.body.limit }}"
+                        },
+                        {
+                            "name": "workflowId",
+                            "value": "={{ $('Webhook').item.json.body.workflow_id }}"
+                        },
+                        {
+                            "name": "status",
+                            "value": "error"
+                        }
+                    ]
+                },
+                "nodeCredentialType": "n8nApi"
+            },
+            "credentials": {
+                "n8nApi": {
+                    "id": "tRdkfwbUbfDfqlYo",
+                    "name": "n8n account"
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 4.2
+        },
+        {
+            "id": "f871af75-b380-4470-aeaf-ce5dd7795c48",
+            "name": "Processing Audit",
+            "type": "n8n-nodes-base.code",
+            "position": [
+                960,
+                240
+            ],
+            "parameters": {
+                "jsCode": "const executions = $input.all().map(item => item.json);\n\n// Basic metrics \nconst totalExecutions = executions.length;\nconst failedExecutions = executions.filter(exec => exec.status === 'error');\nconst successfulExecutions = executions.filter(exec => exec.status === 'success');\nconst failedCount = failedExecutions.length;\nconst successCount = successfulExecutions.length;\nconst failureRate = totalExecutions > 0 ? ((failedCount / totalExecutions) * 100).toFixed(2) : 0;\n\n// All the unique workflows that had failures\nconst workflowsWithFailures = [...new Set(failedExecutions.map(exec => exec.workflowId))];\nconst workflowsWithFailuresCount = workflowsWithFailures.length;\n\n// Group failed executions by workflow\nconst failedByWorkflow = {};\nfailedExecutions.forEach(exec => {\n  if (!failedByWorkflow[exec.workflowId]) {\n    failedByWorkflow[exec.workflowId] = {\n      workflowId: exec.workflowId,\n      failures: [],\n      failureCount: 0\n    };\n  }\n  failedByWorkflow[exec.workflowId].failures.push({\n    id: exec.id,\n    startedAt: exec.startedAt,\n    stoppedAt: exec.stoppedAt,\n    mode: exec.mode\n  });\n  failedByWorkflow[exec.workflowId].failureCount++;\n});\n\n// Calculate execution modes distribution\nconst executionModes = executions.reduce((acc, exec) => {\n  acc[exec.mode] = (acc[exec.mode] || 0) + 1;\n  return acc;\n}, {});\n\n// Get all unique workflows\nconst allWorkflows = [...new Set(executions.map(exec => exec.workflowId))];\nconst totalWorkflowsExecuted = allWorkflows.length;\n\n// Metrics per workflow\nconst workflowMetrics = {};\nallWorkflows.forEach(workflowId => {\n  const workflowExecs = executions.filter(exec => exec.workflowId === workflowId);\n  const workflowFailed = workflowExecs.filter(exec => exec.status === 'error').length;\n  const workflowSuccess = workflowExecs.filter(exec => exec.status === 'success').length;\n  \n  workflowMetrics[workflowId] = {\n    workflowId: workflowId,\n    totalExecutions: workflowExecs.length,\n    successfulExecutions: workflowSuccess,\n    failedExecutions: workflowFailed,\n    successRate: workflowExecs.length > 0 ? \n      ((workflowSuccess / workflowExecs.length) * 100).toFixed(2) + '%' : '0%',\n    failureRate: workflowExecs.length > 0 ? \n      ((workflowFailed / workflowExecs.length) * 100).toFixed(2) + '%' : '0%',\n    lastExecution: workflowExecs[0]?.startedAt || null,\n    executionModes: workflowExecs.reduce((acc, exec) => {\n      acc[exec.mode] = (acc[exec.mode] || 0) + 1;\n      return acc;\n    }, {})\n  };\n});\n\n// Sort workflows by failure rate (highest rate first)\nconst workflowsByFailureRate = Object.values(workflowMetrics)\n  .sort((a, b) => parseFloat(b.failureRate) - parseFloat(a.failureRate))\n  .slice(0, 10); // Top 10 problematic workflows\n\n// Calculate time-based metrics\nconst now = new Date();\nconst executionsByHour = {};\n\nexecutions.forEach(exec => {\n  const startTime = new Date(exec.startedAt);\n  const hourKey = startTime.toISOString().slice(0, 13) + ':00'; // Round to hour\n  \n  if (!executionsByHour[hourKey]) {\n    executionsByHour[hourKey] = {\n      total: 0,\n      success: 0,\n      error: 0\n    };\n  }\n  \n  executionsByHour[hourKey].total++;\n  if (exec.status === 'success') {\n    executionsByHour[hourKey].success++;\n  } else if (exec.status === 'error') {\n    executionsByHour[hourKey].error++;\n  }\n});\n\n// Calculate average execution time for finished executions\nconst executionTimes = executions\n  .filter(exec => exec.finished && exec.startedAt && exec.stoppedAt)\n  .map(exec => {\n    const start = new Date(exec.startedAt);\n    const stop = new Date(exec.stoppedAt);\n    return (stop - start) / 1000; // ms to seconds\n  });\n\nconst avgExecutionTime = executionTimes.length > 0 \n  ? (executionTimes.reduce((a, b) => a + b, 0) / executionTimes.length).toFixed(2)\n  : 0;\n\nconst maxExecutionTime = executionTimes.length > 0 \n  ? Math.max(...executionTimes).toFixed(2)\n  : 0;\n\nconst minExecutionTime = executionTimes.length > 0 \n  ? Math.min(...executionTimes).toFixed(2)\n  : 0;\n\n// Find most recent failures\nconst recentFailures = failedExecutions\n  .sort((a, b) => new Date(b.startedAt) - new Date(a.startedAt))\n  .slice(0, 5)\n  .map(exec => ({\n    id: exec.id,\n    workflowId: exec.workflowId,\n    startedAt: exec.startedAt,\n    mode: exec.mode\n  }));\n\n// Return all indicators\nconst kpis = {\n  summary: {\n    totalExecutions: totalExecutions,\n    successfulExecutions: successCount,\n    failedExecutions: failedCount,\n    failureRate: failureRate + '%',\n    successRate: (100 - parseFloat(failureRate)).toFixed(2) + '%',\n    totalWorkflowsExecuted: totalWorkflowsExecuted,\n    workflowsWithFailures: workflowsWithFailuresCount\n  },\n  \n  executionModes: executionModes,\n  \n  timing: {\n    averageExecutionTime: avgExecutionTime + ' seconds',\n    maxExecutionTime: maxExecutionTime + ' seconds',\n    minExecutionTime: minExecutionTime + ' seconds',\n    timeRange: {\n      from: executions[executions.length - 1]?.startedAt || null,\n      to: executions[0]?.startedAt || null\n    }\n  },\n  \n  failureAnalysis: {\n    workflowsImpactedByFailures: workflowsWithFailures,\n    failedExecutionsByWorkflow: failedByWorkflow,\n    recentFailures: recentFailures\n  },\n  \n  workflowPerformance: {\n    allWorkflowMetrics: workflowMetrics,\n    topProblematicWorkflows: workflowsByFailureRate\n  },\n  \n  timeSeriesData: executionsByHour,\n  \n  alerts: {\n    highFailureRate: parseFloat(failureRate) > 10,\n    failureRateThreshold: parseFloat(failureRate) > 10 ? \n      `⚠️ High failure rate detected: ${failureRate}%` : \n      `✅ Failure rate within acceptable range: ${failureRate}%`,\n    workflowsNeedingAttention: Object.values(workflowMetrics)\n      .filter(wf => parseFloat(wf.failureRate) > 20)\n      .map(wf => ({\n        workflowId: wf.workflowId,\n        failureRate: wf.failureRate,\n        failedCount: wf.failedExecutions\n      }))\n  }\n};\n\n// Return the KPIs object\nreturn kpis;"
+            },
+            "typeVersion": 2
+        },
+        {
+            "id": "b0154d4a-b3bf-44b2-9c8f-98be3d0f6d9e",
+            "name": "Split Active Executions",
+            "type": "n8n-nodes-base.splitOut",
+            "position": [
+                736,
+                432
+            ],
+            "parameters": {
+                "options": {},
+                "fieldToSplitOut": "data"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "6622285f-ae45-4db5-bf59-edcdfe6dbb18",
+            "name": "Details of Executions",
+            "type": "n8n-nodes-base.splitOut",
+            "position": [
+                960,
+                624
+            ],
+            "parameters": {
+                "options": {},
+                "fieldToSplitOut": "data"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "2dfff967-1d7c-40c8-863e-fe414424d38c",
+            "name": "Video Tutorial",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                1328,
+                112
+            ],
+            "parameters": {
+                "color": 4,
+                "width": 464,
+                "height": 352,
+                "content": "📹 **Video Tutorial**\n\nWatch the complete step by step tutorial to implement it:\n\n@[youtube](oJzNnHIusZs)"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "be5cf4f8-2f10-4dc0-bd37-cf24605a85dd",
+            "name": "Main Overview",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                -432,
+                112
+            ],
+            "parameters": {
+                "width": 464,
+                "height": 552,
+                "content": "## Workflow Monitoring Endpoint \n\n\n### How it works\nThis workflow monitors your n8n instance health through API endpoints. Send POST requests with different actions to get execution metrics, workflow statuses, and failure analysis. Generates comprehensive KPIs including success rates, timing metrics, and identifies problematic workflows.\n\n### Setup steps  \n1. Replace `<YOUR_N8N_INSTANCE>` in all HTTP nodes with your instance URL\n2. Configure n8n API credentials for authentication  \n3. Test webhook with action parameters:\n   - `get_active_workflows`\n   - `get_workflow_executions` \n   - `get_execution_details`\n4. Set `limit` and `workflow_id` in request body as needed\n\n### Customization\nModify Processing Audit node to adjust failure thresholds (currently 10% triggers alerts) or add custom KPIs for your monitoring needs."
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "99b8bf13-19bd-486b-acfb-0a2a119e5696",
+            "name": "Webhook Entry",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                48,
+                112
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 352,
+                "height": 684,
+                "content": "### Webhook Entry\nReceives POST requests with action parameter to route monitoring requests"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "aa8146aa-fcdd-40ba-84be-9ccf9a7df67b",
+            "name": "API Calls",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                416,
+                112
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 248,
+                "height": 680,
+                "content": "### API Calls\nFetch data from n8n API endpoints"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "c88ac162-c9be-418d-9eea-a2d28fd0e793",
+            "name": "Data Processing",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                688,
+                112
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 432,
+                "height": 680,
+                "content": "### Data Processing\nExtract and analyze execution data to generate KPIs"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "59e8cb24-3441-463f-9d44-155c011ae1a8",
+            "name": "Response",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                1152,
+                112
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 160,
+                "height": 684,
+                "content": "### Response\nReturn results to webhook caller"
+            },
+            "typeVersion": 1
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Route by Action",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Route by Action": {
+            "main": [
+                [
+                    {
+                        "node": "Get Active Workflows",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Get Last Executions",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Get Executions Details (Status = Error)",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Active Workflows": {
+            "main": [
+                [
+                    {
+                        "node": "Respond to Webhook",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Processing Audit": {
+            "main": [
+                [
+                    {
+                        "node": "Respond to Webhook",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Last Executions": {
+            "main": [
+                [
+                    {
+                        "node": "Extract All Executions",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Active Workflows": {
+            "main": [
+                [
+                    {
+                        "node": "Split Active Executions",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Details of Executions": {
+            "main": [
+                [
+                    {
+                        "node": "Respond to Webhook",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Extract All Executions": {
+            "main": [
+                [
+                    {
+                        "node": "Processing Audit",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Split Active Executions": {
+            "main": [
+                [
+                    {
+                        "node": "Active Workflows",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Executions Details (Status = Error)": {
+            "main": [
+                [
+                    {
+                        "node": "Details of Executions",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}
