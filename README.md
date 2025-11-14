@@ -65,7 +65,7 @@ I reorganized the workflows into five top-level categories to make navigation ea
 - [Inventory ABC & Pareto Analysis with Google Sheets for Supply Chain Optimization](./Logistics_%26_Supply_Chain_Automation/Inventory_ABC_%26_Pareto_Analysis_with_Google_Sheets_for_Supply_Chain_Optimization/)
 - [♻️ AI Multi-Stop Planner for Circular Logistics with GPT-4o & Open Route API](./Logistics_%26_Supply_Chain_Automation/AI_Multi-Stop_Planner_for_Circular_Logistics_with_GPT-4o_%26_Open_Route_API/)
 - [✈️ CO2 Emissions of Business Travels with Carbon Interface API and GPT-4o](./Logistics_%26_Supply_Chain_Automation/CO2_Emissions_of_Business_Travels_with_Carbon_Interface_API_and_GPT-4o/)
-- [📦 Electronic Data Interchange (EDI) Message Parsing with Gmail and Google Sheet](<./Logistics_%26_Supply_Chain_Automation/📦_Electronic_Data_Interchange_(EDI)_Message_Parsing_with_Gmail_and_Google_Sheet/>)
+- [📦 Electronic Data Interchange (EDI) Message Parsing with Gmail and Google Sheet](<./Logistics_%26_Supply_Chain_Automation/Electronic_Data_Interchange_(EDI)_Message_Parsing_with_Gmail_and_Google_Sheet/>)
 - [🗼 AI Powered Supply Chain Control Tower with BigQuery and GPT-4o](./Logistics_%26_Supply_Chain_Automation/AI_Powered_Supply_Chain_Control_Tower_with_BigQuery_and_GPT-4o/)
 - [🚚 Automate Delivery Confirmation with Telegram Bot, Google Drive and Gmail](./Logistics_%26_Supply_Chain_Automation/Automate_Delivery_Confirmation_with_Telegram_Bot,_Google_Drive_and_Gmail/)
 - [🚚 CO2 Emissions of Freight Shipments with Carbon Interface API and GPT-4o](./Logistics_%26_Supply_Chain_Automation/CO2_Emissions_of_Freight_Shipments_with_Carbon_Interface_API_and_GPT-4o/)
