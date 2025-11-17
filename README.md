@@ -39,7 +39,7 @@ I reorganized the workflows into five top-level categories to make navigation ea
 
 **⏰ Productivity for Business Professionals and Students**
 
-- [🉑 Generate Anki Flash Cards for Language Learning with Google Translate and GPT](./Productivity/Generate_Anki_Flash_Cards_for_Language_Learning/)
+- [🉑 Generate Anki Flash Cards for Language Learning with Google Translate and GPT](./Productivity/Generate_Flash_Cards_for_Language_Learning/)
 - [🍅 Custom Pomodoro Tracker using Telegram and Google Sheet](./Productivity/Custom_Pomodoro_Tracker_using_Telegram/)
 - [🏤 Scrapping of European Union Events with Google Sheets](./Productivity/Scrapping_of_European_Union_Events/)
 - [💰 Automate Currency Rates Update in Invoices with Google Sheet, ExchangeRate API](./Productivity/Automate_Currency_Rates_Update_in_Invoices/)
@@ -85,7 +85,6 @@ If you want these as web (GitHub URL) links or added to a separate markdown inde
 You can find video walkthroughs for many of these workflows in my dedicated playlist:
 
 [![n8n Playlist](https://www.samirsaci.com/content/images/size/w1600/2025/11/image-9.png)](https://bit.ly/playlist-n8n-supplyscience)
-
 
 ## 👋 About Me
 
