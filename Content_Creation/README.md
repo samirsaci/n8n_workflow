@@ -29,4 +29,4 @@ Hi! I’m **Samir Saci** — Supply Chain Engineer, Data Scientist, and founder 
 I build automation systems using **n8n**, **Python**, **FastAPI**, and **AI agents** for supply chain, sustainability, and content workflows.
 
 More tutorials & resources:  
-🌐 https://www.samirsaci.com
+🌐 [AI & Analytics Cheat Sheet](https://bit.ly/supply-chain-cheat)
