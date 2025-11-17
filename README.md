@@ -65,7 +65,7 @@ I reorganized the workflows into five top-level categories to make navigation ea
 - [Inventory ABC & Pareto Analysis with Google Sheets for Supply Chain Optimization](./Supply_Chain/Inventory_ABC_And_Pareto_Analysis_Automation/)
 - [♻️ AI Multi-Stop Planner for Circular Logistics with GPT-4o & Open Route API](./Supply_Chain/AI_Multi-Stop_Planner_for_Circular_Logistics/)
 - [✈️ CO2 Emissions of Business Travels with Carbon Interface API and GPT-4o](./Supply_Chain/CO2_Emissions_of_Business_Travels/)
-- [📦 Electronic Data Interchange (EDI) Message Parsing with Gmail and Google Sheet](<./Supply_Chain/Electronic_Data_Interchange_(EDI)_Parsing/>)
+- [📦 Electronic Data Interchange (EDI) Message Parsing with Gmail and Google Sheet](<./Supply_Chain/Electronic_Data_Interchange_(EDI)_Message_Parsing/>)
 - [🗼 AI Powered Supply Chain Control Tower with BigQuery and GPT-4o](./Supply_Chain/AI_Powered_Supply_Chain_Control_Tower/)
 - [🚚 Automate Delivery Confirmation with Telegram Bot, Google Drive and Gmail](./Supply_Chain/Automate_Delivery_Confirmation_with_Telegram_Bot/)
 - [🚚 CO2 Emissions of Freight Shipments with Carbon Interface API and GPT-4o](./Supply_Chain/CO2_Emissions_of_Freight_Shipments/)
