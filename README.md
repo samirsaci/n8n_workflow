@@ -84,7 +84,7 @@ If you want these as web (GitHub URL) links or added to a separate markdown inde
 
 You can find video walkthroughs for many of these workflows in my dedicated playlist:
 
-[![n8n Playlist](https://www.samirsaci.com/content/images/size/w1600/2025/11/image-9.png)](https://www.youtube.com/playlist?list=PLvINVddGUMQWK6JVR35KPXu-GmOfcd0RP)
+[![n8n Playlist](https://www.samirsaci.com/content/images/size/w1600/2025/11/image-9.png)](https://bit.ly/playlist-n8n-supplyscience)
 
 
 ## 👋 About Me
