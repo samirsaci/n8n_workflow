@@ -1,0 +1,1278 @@
+{
+    "meta": {
+        "instanceId": "",
+        "templateCredsSetupCompleted": true
+    },
+    "nodes": [
+        {
+            "id": "5c81dc87-9c72-4944-be44-25c90f822afa",
+            "name": "Telegram Trigger",
+            "type": "n8n-nodes-base.telegramTrigger",
+            "position": [
+                -704,
+                -336
+            ],
+            "webhookId": "166509ac-ac40-4632-b33d-4716e0396978",
+            "parameters": {
+                "updates": [
+                    "message"
+                ],
+                "additionalFields": {}
+            },
+            "credentials": {
+                "telegramApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 1.2
+        },
+        {
+            "id": "fc686ace-1d35-4933-b553-90806709f07b",
+            "name": "Transcribe Operator Command",
+            "type": "@n8n/n8n-nodes-langchain.openAi",
+            "position": [
+                -32,
+                -768
+            ],
+            "parameters": {
+                "options": {},
+                "resource": "audio",
+                "operation": "transcribe",
+                "binaryPropertyName": "=data"
+            },
+            "credentials": {
+                "openAiApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 1.8
+        },
+        {
+            "id": "7a0f873a-82ee-4d70-974b-5424cafa94ca",
+            "name": "Model: Information Extraction",
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "position": [
+                128,
+                -592
+            ],
+            "parameters": {
+                "model": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "gpt-4.1-mini"
+                },
+                "options": {}
+            },
+            "credentials": {
+                "openAiApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "typeVersion": 1.2
+        },
+        {
+            "id": "a11e8e59-6512-4ba4-81ce-e7f3657be820",
+            "name": "Structured Output Parser",
+            "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+            "position": [
+                368,
+                -592
+            ],
+            "parameters": {
+                "jsonSchemaExample": "{\n  \"location_id\": \"A-01-03\",\n  \"quantity\": \"27\"\n}\n"
+            },
+            "typeVersion": 1.3
+        },
+        {
+            "id": "5322b220-e400-4d9b-8770-86c52bb7ad09",
+            "name": "Transcription Error",
+            "type": "n8n-nodes-base.if",
+            "position": [
+                528,
+                -768
+            ],
+            "parameters": {
+                "options": {},
+                "conditions": {
+                    "options": {
+                        "version": 2,
+                        "leftValue": "",
+                        "caseSensitive": true,
+                        "typeValidation": "strict"
+                    },
+                    "combinator": "or",
+                    "conditions": [
+                        {
+                            "id": "adcac05e-72d9-493b-bb48-9d9b561227d2",
+                            "operator": {
+                                "type": "string",
+                                "operation": "equals"
+                            },
+                            "leftValue": "={{ $json.output.location_id }}",
+                            "rightValue": "null"
+                        },
+                        {
+                            "id": "41531a3b-9089-4452-b40c-9f26798d8570",
+                            "operator": {
+                                "name": "filter.operator.equals",
+                                "type": "string",
+                                "operation": "equals"
+                            },
+                            "leftValue": "={{ $json.output.quantity }}",
+                            "rightValue": "null"
+                        }
+                    ]
+                }
+            },
+            "typeVersion": 2.2
+        },
+        {
+            "id": "a6ba287a-f768-4d24-9a80-e41adac0bb5c",
+            "name": "Ask to repeat",
+            "type": "n8n-nodes-base.telegram",
+            "position": [
+                768,
+                -736
+            ],
+            "webhookId": "124bdcd5-7e00-43d0-a423-80798f2cc35c",
+            "parameters": {
+                "text": "=📦 *LogiGreen Inventory Cycle Count AI Assistant*\n\n⚠️ I could not clearly understand your last voice message.  \nPlease repeat the location and the number of units counted.",
+                "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+                "additionalFields": {
+                    "appendAttribution": false
+                }
+            },
+            "credentials": {
+                "telegramApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 1.2
+        },
+        {
+            "id": "d0a1b653-82ac-4ba2-8521-9d8a797da591",
+            "name": "Update Inventory Quantity",
+            "type": "n8n-nodes-base.googleSheets",
+            "position": [
+                896,
+                -528
+            ],
+            "parameters": {
+                "columns": {
+                    "value": {
+                        "checked": "V",
+                        "row_number": 0,
+                        "location_id": "={{ $json.output.location_id }}",
+                        "actual_quantity": "={{ $json.output.quantity }}"
+                    },
+                    "schema": [
+                        {
+                            "id": "location_id",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "required": false,
+                            "displayName": "location_id",
+                            "defaultMatch": false,
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "system_quantity",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "required": false,
+                            "displayName": "system_quantity",
+                            "defaultMatch": false,
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "actual_quantity",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "required": false,
+                            "displayName": "actual_quantity",
+                            "defaultMatch": false,
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "checked",
+                            "type": "string",
+                            "display": true,
+                            "removed": false,
+                            "required": false,
+                            "displayName": "checked",
+                            "defaultMatch": false,
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "row_number",
+                            "type": "number",
+                            "display": true,
+                            "removed": false,
+                            "readOnly": true,
+                            "required": false,
+                            "displayName": "row_number",
+                            "defaultMatch": false,
+                            "canBeUsedToMatch": true
+                        }
+                    ],
+                    "mappingMode": "defineBelow",
+                    "matchingColumns": [
+                        "location_id"
+                    ],
+                    "attemptToConvertTypes": false,
+                    "convertFieldsToString": false
+                },
+                "options": {},
+                "operation": "update",
+                "sheetName": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "gid=0",
+                    "cachedResultUrl": "",
+                    "cachedResultName": ""
+                },
+                "documentId": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "1XzgK4hoDPYCxqHfgIQFDsMLiSMBkaWcl0-lqego7yEo",
+                    "cachedResultUrl": "",
+                    "cachedResultName": ""
+                }
+            },
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 4.7
+        },
+        {
+            "id": "fafcf94b-b12d-42a5-b6d9-802c66b21571",
+            "name": "Error Message: Wrong Location",
+            "type": "n8n-nodes-base.telegram",
+            "position": [
+                912,
+                -320
+            ],
+            "webhookId": "a91b987a-08fb-4c85-b973-c84b4c326a80",
+            "parameters": {
+                "text": "=📦 *LogiGreen Inventory Cycle Count AI Assistant*\n\n⚠️ The location you provided does not exist or has already been counted.  \nPlease verify and send a new voice message.",
+                "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+                "additionalFields": {
+                    "appendAttribution": false
+                }
+            },
+            "credentials": {
+                "telegramApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 1.2
+        },
+        {
+            "id": "f19c8ba3-ac64-45e9-8e42-46adc79e6fdc",
+            "name": "Get Location, Qty",
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "position": [
+                208,
+                -768
+            ],
+            "parameters": {
+                "text": "={{ $json.text }}",
+                "options": {
+                    "systemMessage": "Extract the storage location code and the counted quantity from this short warehouse transcript (EN/FR).\n\nReturn ONLY this JSON:\n{\"location_id\": \"...\", \"quantity\": \"0\"}\n\n- location_id: string or null (location code, e.g. \"A-01-03\", \"B2\")\n- quantity: string or null (convert words to numbers, e.g. \"twenty seven\" → 27)\n\nIf a value is missing or unclear, set it to null. No extra text, no explanations."
+                },
+                "promptType": "define",
+                "hasOutputParser": true
+            },
+            "typeVersion": 2.2
+        },
+        {
+            "id": "b98f10ca-12f7-405b-91f7-5c5429b64dec",
+            "name": "Command",
+            "type": "n8n-nodes-base.if",
+            "position": [
+                -320,
+                -1104
+            ],
+            "parameters": {
+                "options": {},
+                "conditions": {
+                    "options": {
+                        "version": 2,
+                        "leftValue": "",
+                        "caseSensitive": true,
+                        "typeValidation": "strict"
+                    },
+                    "combinator": "and",
+                    "conditions": [
+                        {
+                            "id": "8412d75c-8da6-44a4-b34e-734a3156aba5",
+                            "operator": {
+                                "type": "array",
+                                "operation": "contains",
+                                "rightType": "any"
+                            },
+                            "leftValue": "={{ ['/start', '/help'] }}",
+                            "rightValue": "={{ $json.message.text }}"
+                        }
+                    ]
+                }
+            },
+            "typeVersion": 2.2
+        },
+        {
+            "id": "0467f0b9-8b38-4fad-ae70-2f98a4484977",
+            "name": "Collect Remaining Locations",
+            "type": "n8n-nodes-base.googleSheets",
+            "position": [
+                256,
+                -1040
+            ],
+            "parameters": {
+                "options": {},
+                "filtersUI": {
+                    "values": [
+                        {
+                            "lookupValue": "X",
+                            "lookupColumn": "checked"
+                        }
+                    ]
+                },
+                "sheetName": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "gid=0",
+                    "cachedResultUrl": "",
+                    "cachedResultName": ""
+                },
+                "documentId": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "",
+                    "cachedResultUrl": "",
+                    "cachedResultName": ""
+                }
+            },
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 4.7
+        },
+        {
+            "id": "e053af07-3faf-4f4d-9334-0881861cc326",
+            "name": "Collect Audio",
+            "type": "n8n-nodes-base.telegram",
+            "position": [
+                -320,
+                -768
+            ],
+            "webhookId": "577d9728-9db1-4f00-bff2-d5b22c8686d3",
+            "parameters": {
+                "fileId": "={{ $json.message.voice.file_id }}",
+                "resource": "file",
+                "additionalFields": {}
+            },
+            "credentials": {
+                "telegramApi": {
+                    "id": "6pdXaSHTfy5cOuCU",
+                    "name": "Telegram account"
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 1.2
+        },
+        {
+            "id": "a0d986c6-c3a5-4254-99da-6d0c2874975c",
+            "name": "Command Selection",
+            "type": "n8n-nodes-base.switch",
+            "position": [
+                -128,
+                -1120
+            ],
+            "parameters": {
+                "rules": {
+                    "values": [
+                        {
+                            "outputKey": "/help",
+                            "conditions": {
+                                "options": {
+                                    "version": 2,
+                                    "leftValue": "",
+                                    "caseSensitive": true,
+                                    "typeValidation": "strict"
+                                },
+                                "combinator": "and",
+                                "conditions": [
+                                    {
+                                        "id": "3f3ad69e-7076-490f-bbcf-9ec867575c81",
+                                        "operator": {
+                                            "name": "filter.operator.equals",
+                                            "type": "string",
+                                            "operation": "equals"
+                                        },
+                                        "leftValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+                                        "rightValue": "/help"
+                                    }
+                                ]
+                            },
+                            "renameOutput": true
+                        },
+                        {
+                            "outputKey": "/start",
+                            "conditions": {
+                                "options": {
+                                    "version": 2,
+                                    "leftValue": "",
+                                    "caseSensitive": true,
+                                    "typeValidation": "strict"
+                                },
+                                "combinator": "and",
+                                "conditions": [
+                                    {
+                                        "id": "7d52e6e7-8c80-412e-a2b1-36d8fb108db6",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals"
+                                        },
+                                        "leftValue": "={{ $('Telegram Trigger').item.json.message.text }}",
+                                        "rightValue": "/start"
+                                    }
+                                ]
+                            },
+                            "renameOutput": true
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "notesInFlow": true,
+            "typeVersion": 3.3
+        },
+        {
+            "id": "cf3a7282-91e1-4fbd-b43d-d474efd3c898",
+            "name": "Help Message",
+            "type": "n8n-nodes-base.telegram",
+            "position": [
+                48,
+                -1216
+            ],
+            "webhookId": "59443d8d-8334-4815-8d3d-6441d717cf9e",
+            "parameters": {
+                "text": "=📦 *LogiGreen Inventory Cycle Count AI Assistant — Help*\n\nWelcome! I will assist you step by step during your cycle count using voice commands.\n\n*Available commands:*  \n/start — Begin the cycle count  \n/help — Display this help message\n\n*How it works:*  \nI will send you one location at a time.  \nOnce you reach it, please send a *voice message* stating:  \n- the location  \n- the number of units counted\n\n*If something is unclear:*  \nI will inform you if your message cannot be understood, if the location does not exist, or if it has already been counted.\n\n*End of process:*  \nYou will receive a confirmation message when all locations have been processed.",
+                "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+                "additionalFields": {
+                    "parse_mode": "Markdown",
+                    "appendAttribution": false
+                }
+            },
+            "credentials": {
+                "telegramApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 1.2
+        },
+        {
+            "id": "3b05f836-d7ad-4a40-93da-9939a3b66ae4",
+            "name": "",
+            "type": "n8n-nodes-base.wait",
+            "position": [
+                1072,
+                -528
+            ],
+            "webhookId": "",
+            "parameters": {},
+            "typeVersion": 1.1
+        },
+        {
+            "id": "3f047f76-286c-4c59-92bb-1c43d949e7de",
+            "name": "Sticky Note",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                -736,
+                -1280
+            ],
+            "parameters": {
+                "width": 368,
+                "height": 832,
+                "content": "## AI Powered Inventory Cycle Count Telegram Bot\n\n### How it works\n1. The workflow is triggered whenever an operator sends a message.\n2. It checks whether the message is a command or a voice message.\n3. The audio is downloaded and transcribed using the AI Speech-to-Text model.\n4. An AI node extracts the `location_id` and the counted `quantity` from the audio.\n5. The sheet is updated with the `actual_quantity`.\n7. The workflow continues until there is no unchecked location.\n\n### Setup steps\n- [ ] Create a Google Sheet with columns: `location_id`, `system_quantity`, `actual_quantity`, `checked`.\n- [ ] Add your Google Sheets credentials to the nodes that read and update the spreadsheet.\n- [ ] Create a Telegram bot and add the API token to the Telegram credentials.\n- [ ] Configure the AI Speech-to-Text and AI Language Model credentials.\n\n### Customisation\n- Modify system prompts to support additional languages\n- Adjust Telegram messages to include site-specific SOPs (e.g., safety notes, handling rules).\n- Connect to your WMS database instead of Google Sheets \n"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "e65af2d7-614b-47aa-a43e-ac1a1231f9ff",
+            "name": "Sticky Note8",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                -736,
+                -432
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 364,
+                "height": 268,
+                "content": "## 1. Telegram Trigger and message format check"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "3643b55e-db45-43d7-8b77-3a179bfad43f",
+            "name": "Sticky Note9",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                -352,
+                -432
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 844,
+                "height": 268,
+                "content": "## 2. Get all the locations not yet counted"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "e4f7b797-c52a-4faa-b6b7-f5b6a3fe8014",
+            "name": "Sticky Note10",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                -352,
+                -832
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 844,
+                "height": 380,
+                "content": "## 3. Transcribe and parse the operator audio command using AI"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "c8648043-66e7-4c9d-ae02-1875c78bead3",
+            "name": "Sticky Note11",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                512,
+                -832
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 844,
+                "height": 236,
+                "content": "## 4. If the location or the quantity is missing, ask the operator to repeat"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "b318af42-efa5-4155-9625-550964ef7855",
+            "name": "Sticky Note12",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                512,
+                -576
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 844,
+                "height": 412,
+                "content": "## 5. If the location is in the scope of the cycle count, update the inventory quantity"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "becffec9-f931-43f6-b415-5782712f562b",
+            "name": "Sticky Note13",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                208,
+                -1280
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 492,
+                "height": 428,
+                "content": "## 7. Get all the locations not yet counted"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "bd2bf923-1197-4f91-a0b5-d7b30a05688e",
+            "name": "Remaining Locations",
+            "type": "n8n-nodes-base.aggregate",
+            "position": [
+                400,
+                -1168
+            ],
+            "parameters": {
+                "options": {},
+                "fieldsToAggregate": {
+                    "fieldToAggregate": [
+                        {
+                            "renameField": true,
+                            "outputFieldName": "location_ids",
+                            "fieldToAggregate": "location_id"
+                        }
+                    ]
+                }
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "a64cf5e5-3d50-4b2f-9e2b-6af5a7e04908",
+            "name": "Number of Locations",
+            "type": "n8n-nodes-base.set",
+            "position": [
+                576,
+                -1168
+            ],
+            "parameters": {
+                "options": {},
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "a6998160-b144-41f4-a7d3-937891415ade",
+                            "name": "remaining_locations",
+                            "type": "string",
+                            "value": "={{ $json.location_ids.length }}"
+                        }
+                    ]
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 3.4
+        },
+        {
+            "id": "1c7a64af-7152-4e1e-a878-49fdc7272d21",
+            "name": "Last Location ?",
+            "type": "n8n-nodes-base.if",
+            "position": [
+                912,
+                -1056
+            ],
+            "parameters": {
+                "options": {},
+                "conditions": {
+                    "options": {
+                        "version": 2,
+                        "leftValue": "",
+                        "caseSensitive": true,
+                        "typeValidation": "loose"
+                    },
+                    "combinator": "and",
+                    "conditions": [
+                        {
+                            "id": "52232ec3-e5f4-4c90-9950-028e13c8f4ad",
+                            "operator": {
+                                "type": "number",
+                                "operation": "equals"
+                            },
+                            "leftValue": "={{ $json.remaining_locations }}",
+                            "rightValue": "={{ 1 }}"
+                        }
+                    ]
+                },
+                "looseTypeValidation": true
+            },
+            "typeVersion": 2.2
+        },
+        {
+            "id": "8ddb742b-8db8-4b7c-829f-d80ac0bf5de4",
+            "name": "Combine with Location Records",
+            "type": "n8n-nodes-base.merge",
+            "position": [
+                752,
+                -1056
+            ],
+            "parameters": {
+                "mode": "combineBySql",
+                "options": {}
+            },
+            "notesInFlow": true,
+            "typeVersion": 3.2
+        },
+        {
+            "id": "775519f3-1fc4-478b-baaf-61702cfdea0d",
+            "name": "Sticky Note14",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                -352,
+                -1280
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 540,
+                "height": 428,
+                "content": "## 6. Generate help or error message based on the command selected"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "9cd65a2a-3a80-4133-bfb7-11e9c09d7349",
+            "name": "Wrong Command",
+            "type": "n8n-nodes-base.telegram",
+            "position": [
+                -128,
+                -976
+            ],
+            "webhookId": "f68937cf-2520-4f01-a80c-74863aa0511a",
+            "parameters": {
+                "text": "=⚠️ This message was not recognized.\nPlease use one of the available commands:\n- /start – to start the inventory count process\n- /help – to get instructions on how to use the tool.\n",
+                "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+                "additionalFields": {
+                    "appendAttribution": false
+                }
+            },
+            "credentials": {
+                "telegramApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 1.2
+        },
+        {
+            "id": "abf5b27e-1f38-4005-bc11-33fd5ad6d0b5",
+            "name": "Sticky Note15",
+            "type": "n8n-nodes-base.stickyNote",
+            "position": [
+                720,
+                -1280
+            ],
+            "parameters": {
+                "color": 7,
+                "width": 636,
+                "height": 428,
+                "content": "## 8. Generate a customised instruction to go the next or last location"
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "1ee48399-8f35-4c6d-9303-ae25061a2e2c",
+            "name": "Is Audio?",
+            "type": "n8n-nodes-base.if",
+            "position": [
+                -496,
+                -336
+            ],
+            "parameters": {
+                "options": {},
+                "conditions": {
+                    "options": {
+                        "version": 2,
+                        "leftValue": "",
+                        "caseSensitive": true,
+                        "typeValidation": "strict"
+                    },
+                    "combinator": "and",
+                    "conditions": [
+                        {
+                            "id": "933ef45b-f553-4ecc-a564-7bfb1b6aff3f",
+                            "operator": {
+                                "type": "string",
+                                "operation": "notExists",
+                                "singleValue": true
+                            },
+                            "leftValue": "={{ $json.message.voice.file_id }}",
+                            "rightValue": ""
+                        }
+                    ]
+                }
+            },
+            "typeVersion": 2.2
+        },
+        {
+            "id": "89650f2b-96a2-4432-b197-5aeecc2c75c2",
+            "name": "Get Locations to Check",
+            "type": "n8n-nodes-base.googleSheets",
+            "position": [
+                -288,
+                -320
+            ],
+            "parameters": {
+                "options": {},
+                "filtersUI": {
+                    "values": [
+                        {
+                            "lookupValue": "=X",
+                            "lookupColumn": "checked"
+                        }
+                    ]
+                },
+                "sheetName": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "gid=0",
+                    "cachedResultUrl": "",
+                    "cachedResultName": ""
+                },
+                "documentId": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "",
+                    "cachedResultUrl": "",
+                    "cachedResultName": ""
+                }
+            },
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 4.7
+        },
+        {
+            "id": "01fed5f5-9f08-410a-a153-6d99b73b7766",
+            "name": "Extract Location IDs",
+            "type": "n8n-nodes-base.aggregate",
+            "position": [
+                -32,
+                -320
+            ],
+            "parameters": {
+                "options": {},
+                "fieldsToAggregate": {
+                    "fieldToAggregate": [
+                        {
+                            "renameField": true,
+                            "outputFieldName": "location_ids",
+                            "fieldToAggregate": "location_id"
+                        }
+                    ]
+                }
+            },
+            "typeVersion": 1
+        },
+        {
+            "id": "a736f327-d204-4033-8316-c2467b77881e",
+            "name": "Merge Transcript With Location List",
+            "type": "n8n-nodes-base.merge",
+            "position": [
+                544,
+                -336
+            ],
+            "parameters": {
+                "mode": "combineBySql",
+                "options": {}
+            },
+            "notesInFlow": true,
+            "typeVersion": 3.2
+        },
+        {
+            "id": "378d9a96-cbe2-4221-8706-0bbf62b3910c",
+            "name": "Is Location in Scope?",
+            "type": "n8n-nodes-base.if",
+            "position": [
+                720,
+                -336
+            ],
+            "parameters": {
+                "options": {},
+                "conditions": {
+                    "options": {
+                        "version": 2,
+                        "leftValue": "",
+                        "caseSensitive": true,
+                        "typeValidation": "strict"
+                    },
+                    "combinator": "and",
+                    "conditions": [
+                        {
+                            "id": "9067f61f-5783-4588-827e-5dafa0d7d8b4",
+                            "operator": {
+                                "type": "boolean",
+                                "operation": "true",
+                                "singleValue": true
+                            },
+                            "leftValue": "={{ $json.location_ids.includes($json.output.location_id) }}",
+                            "rightValue": ""
+                        }
+                    ]
+                }
+            },
+            "typeVersion": 2.2
+        },
+        {
+            "id": "c6ef92a7-581b-4706-b73c-3b6bf87cc417",
+            "name": "Send Instruction: Next Location",
+            "type": "n8n-nodes-base.telegram",
+            "position": [
+                1248,
+                -1040
+            ],
+            "webhookId": "5d091ba7-d30b-42db-9f68-01e97dc6cf18",
+            "parameters": {
+                "text": "=📦 *LogiGreen Inventory Cycle Count AI Assistant*\n\n📍 Please go to location *{{ $json.location_id }}*.  \nOnce you have counted the stock, send a voice message with the number of units.",
+                "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+                "additionalFields": {
+                    "appendAttribution": false
+                }
+            },
+            "credentials": {
+                "telegramApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 1.2
+        },
+        {
+            "id": "e70c989f-b884-4298-8332-84aa7118ce0c",
+            "name": "Send Instruction: Last Location",
+            "type": "n8n-nodes-base.telegram",
+            "position": [
+                1088,
+                -1232
+            ],
+            "webhookId": "0602bc8b-8060-488d-93cf-27116e5d47cf",
+            "parameters": {
+                "text": "=📦 *LogiGreen Inventory Cycle Count AI Assistant*\n\n🚨 *Final location:* {{ $json.location_id }}  \nPlease count the units and send a voice message stating the quantity.",
+                "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+                "additionalFields": {
+                    "parse_mode": "Markdown",
+                    "appendAttribution": false
+                }
+            },
+            "credentials": {
+                "telegramApi": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "notesInFlow": true,
+            "typeVersion": 1.2
+        },
+        {
+            "id": "f417c8ad-5fb9-49e0-b95f-8b56bab78bbc",
+            "name": "First Location",
+            "type": "n8n-nodes-base.limit",
+            "position": [
+                1088,
+                -1040
+            ],
+            "parameters": {},
+            "typeVersion": 1
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Command": {
+            "main": [
+                [
+                    {
+                        "node": "Command Selection",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Wrong Command",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Is Audio?": {
+            "main": [
+                [
+                    {
+                        "node": "Command",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Collect Audio",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Get Locations to Check",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Collect Audio": {
+            "main": [
+                [
+                    {
+                        "node": "Transcribe Operator Command",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "First Location": {
+            "main": [
+                [
+                    {
+                        "node": "Send Instruction: Next Location",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Last Location ?": {
+            "main": [
+                [
+                    {
+                        "node": "Send Instruction: Last Location",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "First Location",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Telegram Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Is Audio?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Command Selection": {
+            "main": [
+                [
+                    {
+                        "node": "Help Message",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Collect Remaining Locations",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Location, Qty": {
+            "main": [
+                [
+                    {
+                        "node": "Transcription Error",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Number of Locations": {
+            "main": [
+                [
+                    {
+                        "node": "Combine with Location Records",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Remaining Locations": {
+            "main": [
+                [
+                    {
+                        "node": "Number of Locations",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Transcription Error": {
+            "main": [
+                [
+                    {
+                        "node": "Ask to repeat",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Merge Transcript With Location List",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Extract Location IDs": {
+            "main": [
+                [
+                    {
+                        "node": "Merge Transcript With Location List",
+                        "type": "main",
+                        "index": 1
+                    }
+                ]
+            ]
+        },
+        "Is Location in Scope?": {
+            "main": [
+                [
+                    {
+                        "node": "Update Inventory Quantity",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Error Message: Wrong Location",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Locations to Check": {
+            "main": [
+                [
+                    {
+                        "node": "Extract Location IDs",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Update of Google Sheet": {
+            "main": [
+                [
+                    {
+                        "node": "Collect Remaining Locations",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Structured Output Parser": {
+            "ai_outputParser": [
+                [
+                    {
+                        "node": "Get Location, Qty",
+                        "type": "ai_outputParser",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Update Inventory Quantity": {
+            "main": [
+                [
+                    {
+                        "node": "Update of Google Sheet",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Collect Remaining Locations": {
+            "main": [
+                [
+                    {
+                        "node": "Combine with Location Records",
+                        "type": "main",
+                        "index": 1
+                    },
+                    {
+                        "node": "Remaining Locations",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Transcribe Operator Command": {
+            "main": [
+                [
+                    {
+                        "node": "Get Location, Qty",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Combine with Location Records": {
+            "main": [
+                [
+                    {
+                        "node": "Last Location ?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Model: Information Extraction": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "Get Location, Qty",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Merge Transcript With Location List": {
+            "main": [
+                [
+                    {
+                        "node": "Is Location in Scope?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}
