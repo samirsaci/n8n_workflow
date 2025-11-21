@@ -53,6 +53,7 @@ I reorganized the workflows into five top-level categories to make navigation ea
 - [📰 AI-Powered EU News Digest by Topic with RSS, GPT & Gmail](./Content_Creation/AI-Powered_EU_News_Digest_by_Topic/)
 - [📸 Automate Photo Background Removal with Photoroom API and Google Drive](./Content_Creation/Automate_Photo_Background_Removal/)
 - [🧑‍🦯Improve your Website Accessibility with GPT-4o and Google Sheet](./Content_Creation/Improve_your_Website_Accessibility/)
+- [🖼️ Compress images in a Google Drive folder using Tinify API, Code and Gmail](./Content_Creation/Image_Compression_TinyfyAPI/)
 
 **🌳 Automation for a More Sustainable World**
 
