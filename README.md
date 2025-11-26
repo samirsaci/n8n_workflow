@@ -45,6 +45,7 @@ I reorganized the workflows into five top-level categories to make navigation ea
 - [💰 Automate Currency Rates Update in Invoices with Google Sheet, ExchangeRate API](./Productivity/Automate_Currency_Rates_Update_in_Invoices/)
 - [📈 Hourly Monitoring of Crypto Rates with Alpha Vantage API and Google Sheets](./Productivity/Hourly_Monitoring_of_Crypto_Rates/)
 - [🧑‍🎓 AI Powered Language Teacher with Telegram, Google Sheet and GPT-4o](./Productivity/AI_Powered_Language_Teacher_with_Telegram/)
+- [🏫 English Lesson Generator from Podcasts with RSS, GPT-4, ElevenLabs and Gmail](./Productivity/English_Lesson_Generator_from_Podcasts/)
 
 **✍️ Content Creation, Promotion and Marketing**
 
