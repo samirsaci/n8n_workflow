@@ -4,18 +4,24 @@ This folder contains all workflows dedicated to **sustainability**, **environmen
 
 These templates help automate key sustainability tasks such as:
 
-- Auditing sustainability reports using AI  
-- Tracking new EU environmental legislation  
-- Automating sustainability newsletters and content summaries  
-- Monitoring CO₂ emissions and supporting Scope 3 data collection  
-- Connecting Gmail, Google Sheets, APIs, and GPT models for environmental insights  
+- Auditing sustainability reports using AI
+- Tracking new EU environmental legislation
+- Automating sustainability newsletters and content summaries
+- Monitoring CO₂ emissions and supporting Scope 3 data collection
+- Connecting Gmail, Google Sheets, APIs, and GPT models for environmental insights
 
 All workflows are:
 
-- **Ready to deploy** in n8n (JSON included)  
-- **Documented** with their own README  
-- **Modular and customizable**  
-- Most of them include **YouTube tutorials** for step-by-step guidance  
+- **Ready to deploy** in n8n (JSON included)
+- **Documented** with their own README
+- **Modular and customizable**
+- Most of them include **YouTube tutorials** for step-by-step guidance
+
+**🌳 Automation for a More Sustainable World**
+
+- [🌲 AI Agent for Sustainability Report Audit with Gmail and GPT-40](./AI_Agent_for_Sustainability_Report_Audit/)
+- [🌳 EU Green Legislation Tracker with GPT-4o, Google Sheets and Tasks](./EU_Green_Legislation_Tracker/)
+- [🗞️ AI-Powered Sustainability Newsletter for Marketing with Gmail, GPT-4o](./AI-Powered_Sustainability_Newsletter/)
 
 ## 📺 n8n Tutorials Playlist
 

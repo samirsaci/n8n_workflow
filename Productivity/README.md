@@ -4,18 +4,28 @@ This folder contains all workflows dedicated to **boosting productivity**, **aut
 
 These templates help automate repetitive tasks such as:
 
-- Generating flashcards and language-learning content  
-- Running Pomodoro sessions and studying routines  
-- Collecting events, links, and external resources  
-- Monitoring financial, crypto, or operational metrics  
-- Connecting Gmail, Google Sheets, APIs, and AI models  
+- Generating flashcards and language-learning content
+- Running Pomodoro sessions and studying routines
+- Collecting events, links, and external resources
+- Monitoring financial, crypto, or operational metrics
+- Connecting Gmail, Google Sheets, APIs, and AI models
 
 All workflows are:
 
-- **Ready to deploy** in n8n (JSON included)  
-- **Documented** with their own README  
-- **Modular and customizable**  
-- Most of them include **YouTube tutorials** for step-by-step guidance  
+- **Ready to deploy** in n8n (JSON included)
+- **Documented** with their own README
+- **Modular and customizable**
+- Most of them include **YouTube tutorials** for step-by-step guidance
+
+**⏰ Productivity for Business Professionals and Students**
+
+- [🉑 Generate Anki Flash Cards for Language Learning with Google Translate and GPT](./Generate_Flash_Cards_for_Language_Learning/)
+- [🍅 Custom Pomodoro Tracker using Telegram and Google Sheet](./Custom_Pomodoro_Tracker_using_Telegram/)
+- [🏤 Scrapping of European Union Events with Google Sheets](./Scrapping_of_European_Union_Events/)
+- [💰 Automate Currency Rates Update in Invoices with Google Sheet, ExchangeRate API](./Automate_Currency_Rates_Update_in_Invoices/)
+- [📈 Hourly Monitoring of Crypto Rates with Alpha Vantage API and Google Sheets](./Hourly_Monitoring_of_Crypto_Rates/)
+- [🧑‍🎓 AI Powered Language Teacher with Telegram, Google Sheet and GPT-4o](./AI_Powered_Language_Teacher_with_Telegram/)
+- [🏫 English Lesson Generator from Podcasts with RSS, GPT-4, ElevenLabs and Gmail](./English_Lesson_Generator_from_Podcasts/)
 
 ## 📺 n8n Tutorials Playlist
 
