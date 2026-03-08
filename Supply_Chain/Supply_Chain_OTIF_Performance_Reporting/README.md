@@ -2,7 +2,7 @@
 
 Hi! I'm [Samir](https://samirsaci.com/about), Supply Chain Engineer, Data Scientist based in Paris, and founder of [LogiGreen](https://logi-green.com).
 
-&gt; Let's use AI with n8n to automate supply chain performance tracking!
+> Let's use AI with n8n to automate supply chain performance tracking!
 
 Tracking **On-Time In-Full (OTIF)** delivery performance is critical for retail logistics, but manually compiling data, computing KPIs, and writing analysis reports is time-consuming and error-prone.
 
