@@ -1,5 +1,3 @@
-_Tags: Logistics, Supply Chain, OTIF, KPI Tracking, Performance Management, AI Analysis, Notion_
-
 ### Context
 
 Hi! I'm [Samir](https://samirsaci.com/about), Supply Chain Engineer, Data Scientist based in Paris, and founder of [LogiGreen](https://logi-green.com).
