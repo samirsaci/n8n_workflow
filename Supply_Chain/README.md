@@ -33,6 +33,7 @@ All workflows are:
 - [🤖🚚 AI agent for Transportation Orders Management with GPT-4o and Open Route API](./AI_agent_for_Transportation_Orders_Management/)
 - [🔄️ AI Powered Inventory Cycle Count Telegram Bot using GPT and Google Sheets](./AI_Warehouse_Inventory_Cycle_Count_Bot/)
 - [📦 AI-Powered Damage Reporting for Logistics Operations (Gmail, Telegram and GPT)](./AI_Warehouse_Damage_Report_Bot/)
+- [🚚 Supply Chain OTIF Performance Reporting using Notion and GPT-4](./AI_Multi-Stop_Planner_for_Circular_Logistics/)
 
 ## 📺 n8n Tutorials Playlist
 
